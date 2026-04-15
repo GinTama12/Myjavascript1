@@ -1,16 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>JavaScript 鼠标悬停示例</title>
 </head>
 <body>
-    <p >两种方式访问对象</p>
-    <p id="demo">点击按钮后会更改这里的内容</p>
-  
-    <button onclick="myFunction('张三', '李四')">点击这里</button>
-   
+    <p>把鼠标移动到下面这段文字上：</p>
+    <p id="demo" onmouseenter="highlightText()" onmouseleave="resetText()">鼠标移到这里时，文字会变颜色</p>
+
+    <script src="index.js"></script>
 </body>
-<script src="index.js"></script>
 </html>
