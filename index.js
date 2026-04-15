@@ -1,13 +1,8 @@
-//创建对象定义属性和方法
-var person = {
-    name: "张三",
-    age: 20,
-    job: "学生",
-    fullname: function() {
-        return this.name + "现在是" + this.age + "岁了";
-    }
+function MyFunction() {
+    document.getElementById("p1").style.color = "red";
+    document.getElementById("p3").style.color = "red";
 }
-//访问对象属性和方法
-function myFunction() {
-    document.getElementById("demo").innerHTML = person.fullname();
+function MyFunction2() {
+    document.getElementById("p1").style.color = "black";
+    document.getElementById("p3").style.color = "black";
 }

@@ -4,12 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <p >两种方式访问对象</p>
-    <p id="demo">点击按钮后会更改这里的内容</p>
-  
-    <button onclick="myFunction('张三', '李四')">点击这里</button>
+<div>
+    <div id="div1" onclick="MyFunction()" >
+        <h1>这是一个标题</h1>
+        <p id="p1" onmouseenter="MyFunction()" onmouseleave="MyFunction2()">这是一个段落</p>
+    </div>
+    <div id="div2" onmouseenter="MyFunction()" onmouseleave="MyFunction2()">
+        <p id="p2">这是第二个段落</p>
+        <p id="p3" onmouseenter="MyFunction()" onmouseleave="MyFunction2()">这是第三个段落</p>
+    </div>
+    
+
+
+    
+
+    
+   
+    
+   
    
 </body>
 <script src="index.js"></script>
