@@ -32,3 +32,10 @@ for (const x of tags) {
 
 html += `</ul>`;
 document.getElementById("htmlTemplate").innerHTML = html;
+//计算X的值
+function calculateX() {
+    const a = 5;
+    const b = 10;
+    const x = `X的值是：${a + b}`;
+    document.getElementById("result").textContent = x;
+}
