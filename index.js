@@ -39,3 +39,17 @@ function calculateX() {
     const x = `X的值是：${a + b}`;
     document.getElementById("result").textContent = x;
 }
+//比较运算符
+function compareValues() {
+    const a = 5;
+    const b = "5";
+    const result = `a == b: ${a == b}, a === b: ${a === b}`;
+    document.getElementById("comparison").textContent = result;
+}
+//逻辑运算符
+function logicalOperators() {
+    const a = true;
+    const b = false;
+    const result = `a && b: ${a && b}, a || b: ${a || b}, !a: ${!a}`;
+    document.getElementById("logical").textContent = result;
+}
