@@ -11,3 +11,24 @@ const multiLineEl = document.getElementById("multiLineText");
 if (multiLineEl) {
     multiLineEl.textContent = multiLineText;
 }
+// 定义一个包含表达式的模板字符串
+const name="甄辉";
+const age=36;
+const expressionEmbedding = `我的名字是${name}，今年${age}岁。`;
+document.getElementById("expressionEmbedding").textContent = expressionEmbedding;
+// 定义一个包含函数调用的模板字符串
+const price = 100.3;
+const vat=0.2;
+const TotalPrice = `总价是：${(price * (1 + vat)).toFixed(2)}元。`;
+document.getElementById("functionCall").textContent = TotalPrice;
+// 把模板字符串当作html片段插入到页面中
+let header = "";
+let tags = ["RUNOOB", "GOOGLE", "TAOBAO"];
+
+let html = `<h2>${header}</h2><ul>`;
+for (const x of tags) {
+  html += `<li>${x}</li>`;
+}
+
+html += `</ul>`;
+document.getElementById("htmlTemplate").innerHTML = html;
