@@ -53,3 +53,9 @@ function logicalOperators() {
     const result = `a && b: ${a && b}, a || b: ${a || b}, !a: ${!a}`;
     document.getElementById("logical").textContent = result;
 }
+//条件运算符
+function checkAge() {
+    const age = parseInt(document.getElementById("age").value);
+    const result = `你${age >= 18 ? "可以" : "不能"}投票。`;
+    document.getElementById("ageResult").textContent = result;
+}
