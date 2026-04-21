@@ -69,3 +69,21 @@ function greet() {
     }else{
         document.getElementById("greet").textContent = "晚上好";
     }}
+//根据当前时间获取不同的问候语
+function greet(){
+    const currentHour = new Date().getHours();
+    switch(currentHour){
+        case 20:x="8点了";
+        break;
+        case 21:x="9点了";
+        break;
+
+        case 22:x="10点了";
+        break;
+
+        case 23:x="11点了";
+        break;
+        default:x="现在不是晚上8点到11点";
+    }
+    document.getElementById("greet").textContent = x;
+}
