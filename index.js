@@ -59,3 +59,13 @@ function checkAge() {
     const result = `你${age >= 18 ? "可以" : "不能"}投票。`;
     document.getElementById("ageResult").textContent = result;
 }
+//条件运算符示例
+function greet() {
+    const currentHour = new Date().getHours();
+    if (currentHour < 10) {
+        document.getElementById("greet").textContent = "早上好";
+    } else if(currentHour>=10&&currentHour<18){
+        document.getElementById("greet").textContent = "今天好";
+    }else{
+        document.getElementById("greet").textContent = "晚上好";
+    }}
