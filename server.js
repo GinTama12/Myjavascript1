@@ -15,7 +15,7 @@ const MIME_TYPES = {
 };
 
 const server = http.createServer((req, res) => {
-    let filePath = req.url === '/' ? '/while.html' : req.url;
+    let filePath = req.url === '/' ? '/multiplication.html' : req.url;
     filePath = path.join(__dirname, filePath);
 
     const ext = path.extname(filePath);
