@@ -8,30 +8,28 @@
 <body>
     <h1>while循环语句</h1>
     <p id="demo"></p>
-    <button onclick="myfunction()">点击我</button>
+    <button onclick="myfunction()">运行while循环</button>
     <script>
         function myfunction() {
-
-            var i = 0;
-
+            const demoElement = document.getElementById("demo");
+            demoElement.innerHTML = "";
+            let i = 0;
             while (i < 10) {
-
-                document.getElementById("demo").innerHTML += i + " ";
-
+                demoElement.innerHTML += i + " ";
                 i++;
-
             }
-
         }
     </script>
     <h2>do while循环语句</h2>
     <p id="demo1"></p>
-    <button onclick="myfunction1()">点击我</button>
+    <button onclick="myfunction1()">运行do while循环</button>
     <script>
         function myfunction1() {
-            var i = 0;
+            const demoElement = document.getElementById("demo1");
+            demoElement.innerHTML = "";
+            let i = 0;
             do {
-                document.getElementById("demo1").innerHTML += i + " ";
+                demoElement.innerHTML += i + " ";
                 i++;
             } while (i < 10);
         }
