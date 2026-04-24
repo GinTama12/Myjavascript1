@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>while语句</h1>
+   <p id="demo"></p>
+   <button onclick="myFunction()">点击我</button>
+
+    <script>
+        function myFunction(){
+            let x='';
+            let i=10;
+            while(i<10){
+                x+=i+'<br>';
+                i++;
+            }
+            document.getElementById('demo').innerHTML=x;
+        }
+    </script>
+    <h2>do while语句</h2>
+    <p id="demo1"></p>
+    <button onclick="myFunction1()">点击我</button>
+    <script>
+        function myFunction1(){
+            let x='';
+            let i=10;
+            do{
+                x+=i+'<br>';
+                i++;
+            }while(i<10);
+            document.getElementById('demo1').innerHTML=x;
+        }
+    </script>
+</body>
+</html>

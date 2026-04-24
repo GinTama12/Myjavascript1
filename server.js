@@ -2,7 +2,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
-const PORT = 3000;
+const PORT = 600; // 服务器监听的端口
 
 const MIME_TYPES = {
     '.html': 'text/html; charset=utf-8',
@@ -15,7 +15,7 @@ const MIME_TYPES = {
 };
 
 const server = http.createServer((req, res) => {
-    let filePath = req.url === '/' ? '/index.html' : req.url;
+    let filePath = req.url === '/' ? '/while.html' : req.url;
     filePath = path.join(__dirname, filePath);
 
     const ext = path.extname(filePath);
