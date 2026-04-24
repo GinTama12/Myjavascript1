@@ -6,33 +6,34 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>while语句</h1>
-   <p id="demo"></p>
-   <button onclick="myFunction()">点击我</button>
-
+    <h1>while循环语句</h1>
+    <p id="demo"></p>
+    <button onclick="myfunction()">点击我</button>
     <script>
-        function myFunction(){
-            let x='';
-            let i=10;
-            while(i<10){
-                x+=i+'<br>';
+        function myfunction() {
+
+            var i = 0;
+
+            while (i < 10) {
+
+                document.getElementById("demo").innerHTML += i + " ";
+
                 i++;
+
             }
-            document.getElementById('demo').innerHTML=x;
+
         }
     </script>
-    <h2>do while语句</h2>
+    <h2>do while循环语句</h2>
     <p id="demo1"></p>
-    <button onclick="myFunction1()">点击我</button>
+    <button onclick="myfunction1()">点击我</button>
     <script>
-        function myFunction1(){
-            let x='';
-            let i=10;
-            do{
-                x+=i+'<br>';
+        function myfunction1() {
+            var i = 0;
+            do {
+                document.getElementById("demo1").innerHTML += i + " ";
                 i++;
-            }while(i<10);
-            document.getElementById('demo1').innerHTML=x;
+            } while (i < 10);
         }
     </script>
 </body>
