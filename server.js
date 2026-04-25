@@ -15,7 +15,7 @@ const MIME_TYPES = {
 };
 
 const server = http.createServer((req, res) => {
-    let filePath = req.url === '/' ? '/multiplication.html' : req.url;
+    let filePath = req.url === '/' ? '/type.html' : req.url;
     filePath = path.join(__dirname, filePath);
 
     const ext = path.extname(filePath);
@@ -27,7 +27,7 @@ const server = http.createServer((req, res) => {
             res.end('<h1>404 - 文件未找到</h1>');
             return;
         }
-        res.writeHead(200, { 'Content-Type': contentType });
+        res.writeHead(200, { 'Content-Type': contentType });        
         res.end(data);
     });
 });
