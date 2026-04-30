@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>教育行业 CRM — 转化率提升系统</title>
+    <style>
+        /* ===== CSS Variables ===== */
+        :root {
+            --primary: #4f46e5;
+            --primary-light: #818cf8;
+            --secondary: #06b6d4;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --bg: #f1f5f9;
+            --card: #ffffff;
+            --text: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 4px 24px rgba(79,70,229,0.08);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        /* ===== Layout ===== */
+        .app-header {
+            background: linear-gradient(135deg, var(--primary) 0%, #7c3aed 100%);
+            color: #fff;
+            padding: 18px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 16px rgba(79,70,229,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .app-header h1 { font-size: 22px; font-weight: 700; letter-spacing: 1px; }
+        .app-header .subtitle { font-size: 13px; opacity: 0.8; margin-top: 2px; }
+        .header-badge {
+            background: rgba(255,255,255,0.2);
+            border-radius: 20px;
+            padding: 6px 16px;
+            font-size: 13px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 4px;
+            padding: 20px 32px 0;
+            background: var(--card);
+            border-bottom: 2px solid var(--border);
+        }
+        .nav-tab {
+            padding: 10px 22px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-muted);
+            border-radius: 8px 8px 0 0;
+            transition: all 0.2s;
+        }
+        .nav-tab.active {
+            color: var(--primary);
+            background: var(--bg);
+            border-bottom: 3px solid var(--primary);
+            margin-bottom: -2px;
+        }
+        .nav-tab:hover:not(.active) { color: var(--text); background: var(--bg); }
+
+        .page { display: none; padding: 28px 32px; }
+        .page.active { display: block; }
+
+        /* ===== Cards ===== */
+        .card {
+            background: var(--card);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+        .card-header {
+            padding: 18px 22px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .card-title { font-size: 16px; font-weight: 700; }
+        .card-body { padding: 22px; }
+
+        /* ===== Stats Row ===== */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 28px;
+        }
+        .stat-card {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 22px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+        .stat-card::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 60px; height: 60px;
+            border-radius: 0 0 0 60px;
+            opacity: 0.12;
+        }
+        .stat-card.blue::after  { background: var(--primary); }
+        .stat-card.green::after { background: var(--success); }
+        .stat-card.orange::after{ background: var(--warning); }
+        .stat-card.red::after   { background: var(--danger); }
+        .stat-icon { font-size: 28px; margin-bottom: 8px; }
+        .stat-value { font-size: 32px; font-weight: 800; color: var(--text); }
+        .stat-label { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+        .stat-change { font-size: 12px; margin-top: 6px; font-weight: 600; }
+        .stat-change.up   { color: var(--success); }
+        .stat-change.down { color: var(--danger); }
+
+        /* ===== Kanban Board ===== */
+        .kanban-board {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+        }
+        .kanban-col {
+            background: var(--bg);
+            border-radius: 14px;
+            padding: 14px;
+            min-height: 400px;
+            border: 2px dashed var(--border);
+        }
+        .kanban-col-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            padding: 0 4px;
+        }
+        .kanban-col-title {
+            font-size: 13px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .col-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+        }
+        .kanban-count {
+            background: var(--primary);
+            color: #fff;
+            border-radius: 20px;
+            padding: 2px 8px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        .lead-card {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .lead-card:hover {
+            box-shadow: 0 6px 20px rgba(79,70,229,0.15);
+            transform: translateY(-2px);
+            border-color: var(--primary-light);
+        }
+        .lead-name { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+        .lead-student { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
+        .lead-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px; }
+        .tag {
+            border-radius: 6px;
+            padding: 2px 8px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .tag-source    { background: #e0f2fe; color: #0369a1; }
+        .tag-grade     { background: #fef3c7; color: #92400e; }
+        .tag-hot       { background: #fce7f3; color: #9d174d; }
+        .tag-warm      { background: #fff7ed; color: #9a3412; }
+        .tag-cold      { background: #f0f9ff; color: #075985; }
+        .lead-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+        .score-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        .score-high   { color: var(--danger); }
+        .score-medium { color: var(--warning); }
+        .score-low    { color: var(--secondary); }
+
+        /* ===== Follow-up / Timeline ===== */
+        .follow-list { display: flex; flex-direction: column; gap: 14px; }
+        .follow-item {
+            display: flex;
+            gap: 16px;
+            padding: 16px;
+            background: var(--card);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: box-shadow 0.2s;
+        }
+        .follow-item:hover { box-shadow: var(--shadow); }
+        .follow-item.urgent { border-left: 4px solid var(--danger); }
+        .follow-item.normal { border-left: 4px solid var(--warning); }
+        .follow-item.done   { border-left: 4px solid var(--success); opacity: 0.7; }
+        .follow-avatar {
+            width: 44px; height: 44px;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        .follow-body { flex: 1; }
+        .follow-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 4px;
+        }
+        .follow-name { font-size: 14px; font-weight: 700; }
+        .follow-time { font-size: 12px; color: var(--text-muted); }
+        .follow-action { font-size: 13px; color: var(--text); margin-bottom: 6px; }
+        .follow-note { font-size: 12px; color: var(--text-muted); background: var(--bg); padding: 6px 10px; border-radius: 8px; }
+        .btn {
+            border: none;
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-primary { background: var(--primary); color: #fff; }
+        .btn-primary:hover { background: #4338ca; }
+        .btn-success { background: var(--success); color: #fff; }
+        .btn-success:hover { background: #059669; }
+        .btn-sm { padding: 5px 12px; font-size: 12px; }
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid var(--primary);
+            color: var(--primary);
+        }
+        .btn-outline:hover { background: var(--primary); color: #fff; }
+
+        /* ===== Trial Course Funnel ===== */
+        .funnel-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        .funnel-steps { display: flex; flex-direction: column; gap: 10px; }
+        .funnel-step {
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.2s;
+        }
+        .funnel-step:hover { transform: translateX(4px); }
+        .funnel-bar {
+            height: 56px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            color: #fff;
+            font-weight: 700;
+            font-size: 14px;
+            justify-content: space-between;
+            border-radius: 12px;
+            transition: width 0.8s ease;
+        }
+        .funnel-detail {
+            font-size: 12px;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+        .funnel-rate-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 0;
+            margin: 2px 20px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        .funnel-rate-arrow { color: var(--primary); font-size: 16px; }
+        .conversion-badge {
+            background: #ede9fe;
+            color: var(--primary);
+            border-radius: 6px;
+            padding: 2px 10px;
+            font-weight: 700;
+        }
+
+        .trial-metrics { display: flex; flex-direction: column; gap: 16px; }
+        .metric-item {
+            background: var(--bg);
+            border-radius: 12px;
+            padding: 16px;
+        }
+        .metric-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .metric-label { font-size: 13px; font-weight: 600; }
+        .metric-value { font-size: 18px; font-weight: 800; color: var(--primary); }
+        .progress-bar {
+            height: 8px;
+            background: var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 1s ease;
+        }
+
+        /* ===== Communication Module ===== */
+        .comm-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 20px;
+            height: 560px;
+        }
+        .contact-list {
+            border-right: 1px solid var(--border);
+            overflow-y: auto;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            cursor: pointer;
+            transition: background 0.15s;
+            border-bottom: 1px solid var(--border);
+        }
+        .contact-item:hover    { background: var(--bg); }
+        .contact-item.selected { background: #ede9fe; }
+        .contact-avatar {
+            width: 42px; height: 42px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+        .contact-info { flex: 1; min-width: 0; }
+        .contact-name { font-size: 14px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .contact-last { font-size: 12px; color: var(--text-muted); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .unread-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: var(--primary);
+            flex-shrink: 0;
+        }
+        .chat-area {
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .chat-title { font-size: 15px; font-weight: 700; }
+        .chat-subtitle { font-size: 12px; color: var(--text-muted); }
+        .chat-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .message {
+            display: flex;
+            gap: 10px;
+            max-width: 85%;
+        }
+        .message.sent {
+            flex-direction: row-reverse;
+            align-self: flex-end;
+        }
+        .msg-avatar {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+        .msg-bubble {
+            padding: 10px 14px;
+            border-radius: 14px;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        .message.received .msg-bubble {
+            background: var(--bg);
+            color: var(--text);
+            border-top-left-radius: 4px;
+        }
+        .message.sent .msg-bubble {
+            background: var(--primary);
+            color: #fff;
+            border-top-right-radius: 4px;
+        }
+        .msg-time { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+        .message.sent .msg-time { text-align: right; }
+        .chat-input-row {
+            display: flex;
+            gap: 10px;
+            padding: 14px 20px;
+            border-top: 1px solid var(--border);
+        }
+        .chat-input {
+            flex: 1;
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            padding: 10px 14px;
+            font-size: 13px;
+            outline: none;
+            transition: border-color 0.2s;
+            font-family: inherit;
+        }
+        .chat-input:focus { border-color: var(--primary); }
+
+        /* ===== Analytics Dashboard ===== */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .analytics-bar-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .a-label { font-size: 13px; width: 80px; flex-shrink: 0; }
+        .a-bar-wrap { flex: 1; height: 22px; background: var(--border); border-radius: 6px; overflow: hidden; }
+        .a-bar {
+            height: 100%;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            padding-left: 8px;
+            font-size: 11px;
+            color: #fff;
+            font-weight: 700;
+            transition: width 1s ease;
+        }
+        .a-value { font-size: 13px; font-weight: 700; width: 48px; text-align: right; flex-shrink: 0; }
+
+        .automation-list { display: flex; flex-direction: column; gap: 12px; }
+        .auto-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 16px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--card);
+        }
+        .auto-icon {
+            width: 40px; height: 40px;
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        .auto-info { flex: 1; }
+        .auto-name { font-size: 14px; font-weight: 700; }
+        .auto-desc { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+        .toggle-switch {
+            position: relative;
+            width: 44px; height: 24px;
+            cursor: pointer;
+        }
+        .toggle-switch input { opacity: 0; width: 0; height: 0; }
+        .toggle-slider {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: #cbd5e1;
+            border-radius: 24px;
+            transition: 0.3s;
+        }
+        .toggle-slider:before {
+            content: '';
+            position: absolute;
+            width: 18px; height: 18px;
+            left: 3px; bottom: 3px;
+            background: #fff;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+        .toggle-switch input:checked + .toggle-slider { background: var(--success); }
+        .toggle-switch input:checked + .toggle-slider:before { transform: translateX(20px); }
+
+        /* ===== Notification Toast ===== */
+        #toast {
+            position: fixed;
+            bottom: 32px; right: 32px;
+            background: var(--text);
+            color: #fff;
+            padding: 14px 20px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s;
+            pointer-events: none;
+            z-index: 9999;
+            max-width: 300px;
+        }
+        #toast.show { opacity: 1; transform: translateY(0); }
+
+        /* ===== Utilities ===== */
+        .flex { display: flex; }
+        .items-center { align-items: center; }
+        .gap-2 { gap: 8px; }
+        .gap-3 { gap: 12px; }
+        .mt-4 { margin-top: 16px; }
+        .mb-4 { margin-bottom: 16px; }
+        .text-muted { color: var(--text-muted); font-size: 13px; }
+        .badge {
+            display: inline-block;
+            border-radius: 6px;
+            padding: 2px 10px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        .badge-green  { background: #d1fae5; color: #065f46; }
+        .badge-yellow { background: #fef3c7; color: #78350f; }
+        .badge-red    { background: #fee2e2; color: #991b1b; }
+        .badge-blue   { background: #dbeafe; color: #1e40af; }
+        .section-heading {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+        .divider { height: 1px; background: var(--border); margin: 20px 0; }
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-muted);
+        }
+        .empty-icon { font-size: 40px; margin-bottom: 10px; }
+
+        @media (max-width: 1100px) {
+            .stats-row          { grid-template-columns: repeat(2, 1fr); }
+            .kanban-board       { grid-template-columns: repeat(3, 1fr); }
+            .funnel-wrapper     { grid-template-columns: 1fr; }
+            .comm-layout        { grid-template-columns: 1fr; height: auto; }
+            .contact-list       { max-height: 200px; border-right: none; border-bottom: 1px solid var(--border); }
+        }
+        @media (max-width: 700px) {
+            .app-header         { padding: 14px 16px; }
+            .page               { padding: 16px; }
+            .nav-tabs           { padding: 12px 16px 0; overflow-x: auto; }
+            .stats-row          { grid-template-columns: 1fr 1fr; }
+            .kanban-board       { grid-template-columns: repeat(2, 1fr); }
+            .grid-2             { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- App Header -->
+<header class="app-header">
+    <div>
+        <h1>🎓 教育 CRM — 转化率提升系统</h1>
+        <div class="subtitle">线索管理 · 试听转化 · 家校沟通 · 智能自动化</div>
+    </div>
+    <div class="header-badge">📊 实时数据面板</div>
+</header>
+
+<!-- Navigation -->
+<nav class="nav-tabs" id="nav">
+    <button class="nav-tab active" onclick="switchTab('leads')">🗂 线索管理</button>
+    <button class="nav-tab" onclick="switchTab('followup')">📋 跟进提醒</button>
+    <button class="nav-tab" onclick="switchTab('trial')">🎯 试听转化</button>
+    <button class="nav-tab" onclick="switchTab('comm')">💬 家校沟通</button>
+    <button class="nav-tab" onclick="switchTab('analytics')">📈 数据看板</button>
+</nav>
+
+<!-- ==================== PAGE 1: LEAD MANAGEMENT ==================== -->
+<section class="page active" id="page-leads">
+    <!-- KPI Stats -->
+    <div class="stats-row">
+        <div class="stat-card blue">
+            <div class="stat-icon">📥</div>
+            <div class="stat-value" id="stat-total">247</div>
+            <div class="stat-label">本月新增线索</div>
+            <div class="stat-change up">▲ 18% vs 上月</div>
+        </div>
+        <div class="stat-card green">
+            <div class="stat-icon">🎯</div>
+            <div class="stat-value" id="stat-converted">68</div>
+            <div class="stat-label">已成单</div>
+            <div class="stat-change up">▲ 12% vs 上月</div>
+        </div>
+        <div class="stat-card orange">
+            <div class="stat-icon">📞</div>
+            <div class="stat-value" id="stat-followup">83</div>
+            <div class="stat-label">待跟进</div>
+            <div class="stat-change down">▼ 需重点关注</div>
+        </div>
+        <div class="stat-card red">
+            <div class="stat-icon">⏰</div>
+            <div class="stat-value" id="stat-overdue">14</div>
+            <div class="stat-label">超时未跟进</div>
+            <div class="stat-change down">▼ 需立即处理</div>
+        </div>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="flex items-center gap-3 mb-4">
+        <input id="leadSearch" type="text" placeholder="🔍 搜索家长姓名、学生姓名、电话..."
+            style="flex:1; border:1.5px solid var(--border); border-radius:10px; padding:10px 16px; font-size:14px; outline:none; font-family:inherit;"
+            oninput="filterLeads(this.value)">
+        <select id="channelFilter" onchange="filterLeads()" style="border:1.5px solid var(--border); border-radius:10px; padding:10px 14px; font-size:13px; outline:none; background:var(--card);">
+            <option value="">全部渠道</option>
+            <option value="官网">官网</option>
+            <option value="微信">微信</option>
+            <option value="电话">电话</option>
+            <option value="海报">海报扫码</option>
+            <option value="转介绍">转介绍</option>
+        </select>
+        <button class="btn btn-primary" onclick="addLead()">＋ 新增线索</button>
+    </div>
+
+    <!-- Kanban Board -->
+    <div class="kanban-board" id="kanbanBoard">
+        <!-- Columns rendered by JS -->
+    </div>
+</section>
+
+<!-- ==================== PAGE 2: FOLLOW-UP REMINDERS ==================== -->
+<section class="page" id="page-followup">
+    <div class="flex items-center gap-3 mb-4">
+        <h2 class="section-heading" style="margin:0;">📋 今日跟进任务</h2>
+        <span class="badge badge-red">14 项超时</span>
+        <span class="badge badge-yellow">23 项今日到期</span>
+        <div style="flex:1;"></div>
+        <button class="btn btn-primary btn-sm" onclick="showToast('✅ 已批量生成本周回访计划！')">批量生成回访计划</button>
+    </div>
+
+    <div class="follow-list" id="followList">
+        <!-- Rendered by JS -->
+    </div>
+</section>
+
+<!-- ==================== PAGE 3: TRIAL CLASS CONVERSION ==================== -->
+<section class="page" id="page-trial">
+    <div class="funnel-wrapper">
+        <!-- Funnel -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">🎯 试听转化漏斗 — 本月</span>
+                <span class="badge badge-blue">目标转化率 65%</span>
+            </div>
+            <div class="card-body">
+                <div class="funnel-steps" id="funnelSteps">
+                    <!-- Rendered by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Trial Metrics -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">📊 关键转化指标</span>
+                <button class="btn btn-sm btn-outline" onclick="showToast('📧 报告已发送至管理员邮箱！')">导出报告</button>
+            </div>
+            <div class="card-body">
+                <div class="trial-metrics" id="trialMetrics">
+                    <!-- Rendered by JS -->
+                </div>
+                <div class="divider"></div>
+                <h3 style="font-size:14px; font-weight:700; margin-bottom:12px;">🔔 自动触发规则</h3>
+                <div class="automation-list" id="trialAuto">
+                    <!-- Rendered by JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Trial List -->
+    <div class="card mt-4">
+        <div class="card-header">
+            <span class="card-title">📅 近期试听安排</span>
+            <button class="btn btn-primary btn-sm" onclick="showToast('✅ 邀约短信已群发至全部待确认家长！')">一键群发邀约确认</button>
+        </div>
+        <div class="card-body" style="overflow-x:auto;">
+            <table style="width:100%; border-collapse:collapse; font-size:13px;" id="trialTable">
+                <thead>
+                    <tr style="background:var(--bg);">
+                        <th style="padding:10px 14px; text-align:left; font-weight:700;">家长</th>
+                        <th style="padding:10px 14px; text-align:left; font-weight:700;">学生</th>
+                        <th style="padding:10px 14px; text-align:left; font-weight:700;">年级</th>
+                        <th style="padding:10px 14px; text-align:left; font-weight:700;">科目</th>
+                        <th style="padding:10px 14px; text-align:left; font-weight:700;">试听时间</th>
+                        <th style="padding:10px 14px; text-align:left; font-weight:700;">状态</th>
+                        <th style="padding:10px 14px; text-align:left; font-weight:700;">操作</th>
+                    </tr>
+                </thead>
+                <tbody id="trialTableBody">
+                    <!-- Rendered by JS -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== PAGE 4: COMMUNICATION ==================== -->
+<section class="page" id="page-comm">
+    <div class="card" style="height:620px; display:flex; flex-direction:column;">
+        <div class="card-header">
+            <span class="card-title">💬 家校沟通中心</span>
+            <div class="flex gap-2">
+                <button class="btn btn-sm btn-outline" onclick="showToast('📢 群发模板消息已推送至全部家长！')">📢 群发通知</button>
+                <button class="btn btn-sm btn-primary" onclick="showToast('✅ 所有沟通记录已自动归档！')">📁 同步归档</button>
+            </div>
+        </div>
+        <div class="comm-layout" style="flex:1; overflow:hidden;">
+            <div class="contact-list" id="contactList">
+                <!-- Rendered by JS -->
+            </div>
+            <div class="chat-area" id="chatArea">
+                <div class="chat-header" id="chatHeader">
+                    <div class="contact-avatar" id="chatAvatar" style="background:#ede9fe;"></div>
+                    <div>
+                        <div class="chat-title" id="chatTitle">请选择联系人</div>
+                        <div class="chat-subtitle" id="chatSubtitle">—</div>
+                    </div>
+                    <div style="flex:1;"></div>
+                    <button class="btn btn-sm btn-outline" id="chatActionBtn" onclick="showToast('📋 跟进记录已同步到线索卡片！')">同步到CRM</button>
+                </div>
+                <div class="chat-body" id="chatBody">
+                    <div class="empty-state">
+                        <div class="empty-icon">💬</div>
+                        <div>点击左侧联系人开始对话</div>
+                    </div>
+                </div>
+                <div class="chat-input-row">
+                    <textarea class="chat-input" id="msgInput" rows="1" placeholder="输入消息，Shift+Enter 换行，Enter 发送..."></textarea>
+                    <button class="btn btn-primary" onclick="sendMessage()">发送</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== PAGE 5: ANALYTICS ==================== -->
+<section class="page" id="page-analytics">
+    <div class="stats-row">
+        <div class="stat-card blue">
+            <div class="stat-icon">📈</div>
+            <div class="stat-value">27.5%</div>
+            <div class="stat-label">整体转化率</div>
+            <div class="stat-change up">▲ 4.2% vs 上月</div>
+        </div>
+        <div class="stat-card green">
+            <div class="stat-icon">⚡</div>
+            <div class="stat-value">1.8天</div>
+            <div class="stat-label">平均响应时长</div>
+            <div class="stat-change up">▲ 比上月快 0.4天</div>
+        </div>
+        <div class="stat-card orange">
+            <div class="stat-icon">🎓</div>
+            <div class="stat-value">61.3%</div>
+            <div class="stat-label">试听到成单转化</div>
+            <div class="stat-change up">▲ 5.7% vs 上月</div>
+        </div>
+        <div class="stat-card red">
+            <div class="stat-icon">🔄</div>
+            <div class="stat-value">42%</div>
+            <div class="stat-label">转介绍占比</div>
+            <div class="stat-change up">▲ 持续增长</div>
+        </div>
+    </div>
+
+    <div class="grid-2">
+        <!-- Channel Analysis -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">📡 渠道来源分析</span>
+            </div>
+            <div class="card-body" id="channelChart">
+                <!-- Rendered by JS -->
+            </div>
+        </div>
+
+        <!-- Sales Performance -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">🏆 顾问转化率排行</span>
+            </div>
+            <div class="card-body" id="salesChart">
+                <!-- Rendered by JS -->
+            </div>
+        </div>
+
+        <!-- Automation -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">🤖 自动化工具 — 效果监控</span>
+            </div>
+            <div class="card-body" id="autoEffects">
+                <!-- Rendered by JS -->
+            </div>
+        </div>
+
+        <!-- Weekly Trend -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">📅 近7日线索趋势</span>
+            </div>
+            <div class="card-body" id="trendChart">
+                <!-- Rendered by JS -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Toast Notification -->
+<div id="toast"></div>
+
+<!-- ==================== JAVASCRIPT ==================== -->
+<script>
+    // ==================== DATA ====================
+    const COLUMNS = [
+        { id: 'new',       label: '新线索',   color: '#6366f1', dot: '#818cf8' },
+        { id: 'contacted', label: '已接触',   color: '#0891b2', dot: '#22d3ee' },
+        { id: 'invited',   label: '已邀约',   color: '#d97706', dot: '#fbbf24' },
+        { id: 'trialed',   label: '已试听',   color: '#7c3aed', dot: '#a78bfa' },
+        { id: 'signed',    label: '已签单',   color: '#059669', dot: '#34d399' },
+    ];
+
+    const leads = [
+        { id:1, parent:'张爸爸', student:'张小明', grade:'五年级', channel:'微信', temp:'hot',  score:92, days:0, col:'new',       note:'孩子数学弱，希望提升' },
+        { id:2, parent:'李妈妈', student:'李思思', grade:'三年级', channel:'转介绍', temp:'hot', score:88, days:1, col:'new',       note:'朋友介绍，英语口语' },
+        { id:3, parent:'王爸爸', student:'王大明', grade:'初一',   channel:'官网',  temp:'warm', score:74, days:2, col:'contacted', note:'了解托管班' },
+        { id:4, parent:'赵妈妈', student:'赵小花', grade:'二年级', channel:'海报',  temp:'warm', score:70, days:3, col:'contacted', note:'报名冬令营咨询' },
+        { id:5, parent:'刘妈妈', student:'刘明明', grade:'四年级', channel:'电话',  temp:'cold', score:55, days:5, col:'contacted', note:'价格敏感，犹豫中' },
+        { id:6, parent:'陈妈妈', student:'陈欣欣', grade:'初二',   channel:'官网',  temp:'hot',  score:85, days:1, col:'invited',   note:'英语竞赛备考' },
+        { id:7, parent:'孙爸爸', student:'孙小帅', grade:'六年级', channel:'微信',  temp:'warm', score:71, days:4, col:'invited',   note:'小升初冲刺' },
+        { id:8, parent:'周妈妈', student:'周乐乐', grade:'幼大',   channel:'转介绍', temp:'hot', score:90, days:0, col:'trialed',   note:'已试听，家长很满意' },
+        { id:9, parent:'吴爸爸', student:'吴晓红', grade:'初三',   channel:'官网',  temp:'warm', score:80, days:2, col:'trialed',   note:'中考冲刺班感兴趣' },
+        { id:10,parent:'郑妈妈', student:'郑欢欢', grade:'二年级', channel:'微信',  temp:'hot',  score:95, days:0, col:'signed',    note:'已缴费3期课程' },
+        { id:11,parent:'冯爸爸', student:'冯博博', grade:'五年级', channel:'海报',  temp:'hot',  score:87, days:0, col:'signed',    note:'签约全年' },
+        { id:12,parent:'蒋妈妈', student:'蒋小丽', grade:'初一',   channel:'电话',  temp:'cold', score:50, days:8, col:'new',       note:'只问价格未回复' },
+    ];
+
+    const followTasks = [
+        { id:1, parent:'刘妈妈', student:'刘明明', type:'urgent', action:'电话回访 — 价格异议处理', note:'上次沟通：价格偏高，可提供分期方案', avatar:'📞', time:'超时 3 天', stage:'已接触' },
+        { id:2, parent:'蒋妈妈', student:'蒋小丽', type:'urgent', action:'微信跟进 — 8天无回复', note:'发送过价格单，需换话术重新接触', avatar:'💬', time:'超时 8 天', stage:'新线索' },
+        { id:3, parent:'陈妈妈', student:'陈欣欣', type:'normal', action:'发送试听邀约确认短信', note:'已邀约本周六上午 10:00 试听，需再次确认出席', avatar:'📅', time:'今日到期', stage:'已邀约' },
+        { id:4, parent:'孙爸爸', student:'孙小帅', type:'normal', action:'发送小升初备考资料包', note:'承诺发送资料，已超出承诺时间 1 天', avatar:'📚', time:'今日到期', stage:'已邀约' },
+        { id:5, parent:'吴爸爸', student:'吴晓红', type:'normal', action:'试听后 24 小时回访', note:'试听满意度反馈良好，趁热打铁推动签单', avatar:'🎯', time:'今日到期', stage:'已试听' },
+        { id:6, parent:'王爸爸', student:'王大明', type:'done',   action:'发送课程方案（已完成）', note:'已通过企微发送，家长已读', avatar:'✅', time:'已完成', stage:'已接触' },
+    ];
+
+    const funnelData = [
+        { label:'线索入库',   count:247, color:'#6366f1' },
+        { label:'首次接触',   count:198, color:'#0891b2' },
+        { label:'邀约试听',   count:142, color:'#d97706' },
+        { label:'试听到访',   count:108, color:'#7c3aed' },
+        { label:'成功签单',   count: 68, color:'#059669' },
+    ];
+
+    const trialSchedule = [
+        { parent:'周妈妈', student:'周乐乐', grade:'幼大',  subject:'幼小衔接', time:'今天 14:00', status:'confirmed' },
+        { parent:'陈妈妈', student:'陈欣欣', grade:'初二',  subject:'英语口语', time:'明天 10:00', status:'pending' },
+        { parent:'孙爸爸', student:'孙小帅', grade:'六年级', subject:'数学思维', time:'明天 14:30', status:'pending' },
+        { parent:'张爸爸', student:'张小明', grade:'五年级', subject:'数学强化', time:'后天 09:00', status:'invited' },
+        { parent:'李妈妈', student:'李思思', grade:'三年级', subject:'英语绘本', time:'后天 15:00', status:'invited' },
+        { parent:'吴爸爸', student:'吴晓红', grade:'初三',  subject:'中考数学', time:'本周六 10:00', status:'completed' },
+    ];
+
+    const contacts = [
+        { id:1, name:'周妈妈', student:'周乐乐', avatar:'👩', bg:'#fce7f3', unread:true,
+          messages:[
+            { from:'parent', text:'老师好，我是周乐乐的妈妈，请问你们幼小衔接班还有名额吗？', time:'09:15' },
+            { from:'staff',  text:'您好！目前还有2个名额，我们这边已经帮小乐乐预留了位置。本周六下午2点有一节免费试听课，方便来体验一下吗？', time:'09:18' },
+            { from:'parent', text:'好的，那我们来试试看。需要带什么材料吗？', time:'09:22' },
+            { from:'staff',  text:'不需要任何材料，带孩子来就好了！地址我等下发给您。期待和小乐乐见面😊', time:'09:24' },
+          ]
+        },
+        { id:2, name:'陈妈妈', student:'陈欣欣', avatar:'👩‍💼', bg:'#dbeafe', unread:true,
+          messages:[
+            { from:'parent', text:'你好，我女儿英语口语很弱，想提升，有适合初二的班吗？', time:'昨天 16:30' },
+            { from:'staff',  text:'陈妈妈您好！我们有专门的初中英语口语精品班，12人小班制，每周3次课。欣欣明天上午10点来试听一节如何？完全免费～', time:'昨天 16:35' },
+            { from:'parent', text:'好的，我们明天见！', time:'昨天 16:40' },
+          ]
+        },
+        { id:3, name:'王爸爸', student:'王大明', avatar:'👨', bg:'#d1fae5', unread:false,
+          messages:[
+            { from:'parent', text:'大明数学这次期中只考了76分，你们有没有专门补弱的班？', time:'2天前' },
+            { from:'staff',  text:'王爸爸好！76分我们可以帮助提升，首先建议做个免费的学情诊断测评，找出薄弱知识点再针对性辅导，效果会更好。您方便本周来一次吗？', time:'2天前' },
+          ]
+        },
+        { id:4, name:'刘妈妈', student:'刘明明', avatar:'👩‍🦱', bg:'#fef9c3', unread:false,
+          messages:[
+            { from:'parent', text:'你们一学期多少钱？', time:'5天前' },
+            { from:'staff',  text:'刘妈妈您好！我们有按课时计费和学期套餐两种方式，套餐更划算还可以分期哦。具体费用我帮您出一份方案，方便加个微信详细沟通吗？', time:'5天前' },
+            { from:'parent', text:'有点贵，再看看吧。', time:'5天前' },
+          ]
+        },
+    ];
+
+    const channelData = [
+        { label:'微信/企微', value:82, pct:33, color:'#6366f1' },
+        { label:'转介绍',   value:68, pct:27, color:'#059669' },
+        { label:'官网/SEO', value:52, pct:21, color:'#0891b2' },
+        { label:'海报扫码', value:28, pct:11, color:'#d97706' },
+        { label:'电话',     value:17, pct:7,  color:'#ef4444' },
+    ];
+
+    const salesData = [
+        { name:'李顾问', leads:62, converted:22, rate:'35.5%', color:'#6366f1' },
+        { name:'张顾问', leads:58, converted:18, rate:'31.0%', color:'#0891b2' },
+        { name:'王顾问', leads:71, converted:21, rate:'29.6%', color:'#059669' },
+        { name:'赵顾问', leads:56, converted:7,  rate:'12.5%', color:'#ef4444' },
+    ];
+
+    const autoEffects = [
+        { name:'3天无跟进自动提醒',      before:'转化率 18%', after:'转化率 27%', delta:'+50%', icon:'⏰', bg:'#ede9fe' },
+        { name:'试听后24h自动回访任务',   before:'成单率 45%', after:'成单率 62%', delta:'+38%', icon:'🎯', bg:'#d1fae5' },
+        { name:'线索自动评分分配',        before:'响应时长 4h', after:'响应时长 1.2h', delta:'-70%', icon:'⚡', bg:'#dbeafe' },
+        { name:'家长满意度自动收集',      before:'收集率 20%', after:'收集率 78%', delta:'+290%', icon:'⭐', bg:'#fef3c7' },
+    ];
+
+    const trendData = [
+        { day:'周一', leads:28, converted:7 },
+        { day:'周二', leads:35, converted:9 },
+        { day:'周三', leads:42, converted:13 },
+        { day:'周四', leads:31, converted:8 },
+        { day:'周五', leads:38, converted:12 },
+        { day:'周六', leads:52, converted:16 },
+        { day:'周日', leads:21, converted:3 },
+    ];
+
+    const trialAutoRules = [
+        { name:'试听未到访自动二次邀约',    active:true,  icon:'🔔', bg:'#ede9fe' },
+        { name:'试听后48h未成单自动提醒',   active:true,  icon:'⏳', bg:'#dbeafe' },
+        { name:'家长满意度问卷自动发送',    active:true,  icon:'📝', bg:'#d1fae5' },
+        { name:'体验课结束后优惠倒计时通知', active:false, icon:'💰', bg:'#fef3c7' },
+    ];
+
+    const trialMetricsData = [
+        { label:'邀约→到访率', value:'76%', pct:76, color:'#6366f1' },
+        { label:'到访→成单率', value:'63%', pct:63, color:'#059669' },
+        { label:'二次试听率',  value:'28%', pct:28, color:'#d97706' },
+        { label:'家长满意度',  value:'91%', pct:91, color:'#0891b2' },
+    ];
+
+    // ==================== HELPERS ====================
+    let activeContact = null;
+
+    function switchTab(tab) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+        document.getElementById('page-' + tab).classList.add('active');
+        const idx = ['leads','followup','trial','comm','analytics'].indexOf(tab);
+        document.querySelectorAll('.nav-tab')[idx].classList.add('active');
+    }
+
+    function showToast(msg) {
+        const t = document.getElementById('toast');
+        t.textContent = msg;
+        t.classList.add('show');
+        setTimeout(() => t.classList.remove('show'), 2800);
+    }
+
+    function tempClass(temp) {
+        return temp === 'hot' ? 'tag-hot' : temp === 'warm' ? 'tag-warm' : 'tag-cold';
+    }
+    function tempLabel(temp) {
+        return temp === 'hot' ? '🔥 热' : temp === 'warm' ? '☀️ 温' : '❄️ 冷';
+    }
+    function scoreClass(s) {
+        return s >= 80 ? 'score-high' : s >= 65 ? 'score-medium' : 'score-low';
+    }
+    function statusBadge(s) {
+        const map = {
+            confirmed: '<span class="badge badge-green">✅ 已确认</span>',
+            pending:   '<span class="badge badge-yellow">⏳ 待确认</span>',
+            invited:   '<span class="badge badge-blue">📩 已邀约</span>',
+            completed: '<span class="badge" style="background:#f0fdf4;color:#166534;">🎓 已完成</span>',
+        };
+        return map[s] || s;
+    }
+
+    // ==================== RENDER: KANBAN ====================
+    function renderKanban(list) {
+        const board = document.getElementById('kanbanBoard');
+        board.innerHTML = COLUMNS.map(col => {
+            const cards = list.filter(l => l.col === col.id);
+            return `
+            <div class="kanban-col">
+                <div class="kanban-col-header">
+                    <div class="kanban-col-title">
+                        <span class="col-dot" style="background:${col.dot}"></span>
+                        ${col.label}
+                    </div>
+                    <span class="kanban-count" style="background:${col.color}">${cards.length}</span>
+                </div>
+                ${cards.map(renderLeadCard).join('')}
+                ${cards.length === 0 ? '<div class="text-muted" style="text-align:center;padding:20px;">暂无线索</div>' : ''}
+            </div>`;
+        }).join('');
+    }
+
+    function renderLeadCard(l) {
+        const sc = scoreClass(l.score);
+        return `
+        <div class="lead-card" onclick="advanceLead(${l.id})">
+            <div class="lead-name">👨‍👩‍👦 ${l.parent}</div>
+            <div class="lead-student">🎓 ${l.student} · ${l.grade}</div>
+            <div class="lead-tags">
+                <span class="tag tag-source">${l.channel}</span>
+                <span class="tag tag-grade">${l.grade}</span>
+                <span class="tag ${tempClass(l.temp)}">${tempLabel(l.temp)}</span>
+            </div>
+            <div class="lead-meta">
+                <span class="score-badge ${sc}">★ ${l.score}</span>
+                <span>${l.days === 0 ? '今日新增' : `${l.days}天前`}</span>
+            </div>
+            <div style="font-size:11px;color:var(--text-muted);margin-top:6px;border-top:1px solid var(--border);padding-top:6px;">${l.note}</div>
+        </div>`;
+    }
+
+    function filterLeads(q) {
+        const query  = (document.getElementById('leadSearch').value || '').toLowerCase();
+        const ch     = document.getElementById('channelFilter').value;
+        const filtered = leads.filter(l =>
+            (!query || l.parent.includes(query) || l.student.includes(query) || l.grade.includes(query)) &&
+            (!ch    || l.channel === ch)
+        );
+        renderKanban(filtered);
+    }
+
+    function addLead() {
+        const name = prompt('请输入家长姓名：');
+        if (!name) return;
+        const student = prompt('请输入学生姓名：') || '（未填）';
+        leads.push({
+            id: leads.length + 1,
+            parent: name, student, grade: '未知', channel: '手动录入',
+            temp: 'warm', score: 60, days: 0, col: 'new', note: '手动新增线索'
+        });
+        renderKanban(leads);
+        document.getElementById('stat-total').textContent = leads.length + 194;
+        showToast(`✅ 线索"${name}"已成功录入！`);
+    }
+
+    function advanceLead(id) {
+        const order = ['new','contacted','invited','trialed','signed'];
+        const lead = leads.find(l => l.id === id);
+        if (!lead) return;
+        const cur = order.indexOf(lead.col);
+        if (cur < order.length - 1) {
+            lead.col = order[cur + 1];
+            renderKanban(leads);
+            showToast(`🎉 ${lead.parent} → ${COLUMNS[cur + 1].label}`);
+        } else {
+            showToast(`✅ ${lead.parent} 已是最终阶段！`);
+        }
+    }
+
+    // ==================== RENDER: FOLLOW-UP ====================
+    function renderFollowList() {
+        document.getElementById('followList').innerHTML = followTasks.map(t => `
+        <div class="follow-item ${t.type}">
+            <div class="follow-avatar" style="background:${t.type==='urgent'?'#fee2e2':t.type==='done'?'#d1fae5':'#fef3c7'};">${t.avatar}</div>
+            <div class="follow-body">
+                <div class="follow-top">
+                    <span class="follow-name">${t.parent} · ${t.student}</span>
+                    <span class="follow-time ${t.type==='urgent'?'badge badge-red':t.type==='done'?'badge badge-green':'badge badge-yellow'}">${t.time}</span>
+                </div>
+                <div class="follow-action">${t.action}</div>
+                <div class="follow-note">${t.note}</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end;flex-shrink:0;">
+                <span class="badge badge-blue">${t.stage}</span>
+                ${t.type !== 'done'
+                    ? `<button class="btn btn-success btn-sm" onclick="markDone(${t.id})">✓ 标记完成</button>`
+                    : ''}
+            </div>
+        </div>`).join('');
+    }
+
+    function markDone(id) {
+        const task = followTasks.find(t => t.id === id);
+        if (task) {
+            task.type = 'done';
+            task.time = '已完成';
+            renderFollowList();
+            showToast('✅ 跟进任务已完成并归档！');
+        }
+    }
+
+    // ==================== RENDER: FUNNEL ====================
+    function renderFunnel() {
+        const maxCount = funnelData[0].count;
+        document.getElementById('funnelSteps').innerHTML = funnelData.map((step, i) => {
+            const widthPct = Math.round((step.count / maxCount) * 100);
+            const rate = i > 0 ? `→ 转化率 ${Math.round((step.count / funnelData[i-1].count) * 100)}%` : '';
+            return `
+            <div class="funnel-step">
+                <div class="funnel-bar" style="background:${step.color}; width:${widthPct}%;">
+                    <span>${step.label}  ${step.count} 人</span>
+                    <span class="funnel-detail">${rate}</span>
+                </div>
+                ${i < funnelData.length - 1
+                    ? `<div class="funnel-rate-row">
+                        <span class="funnel-rate-arrow">↓</span>
+                        <span class="conversion-badge">转化率 ${Math.round((funnelData[i+1].count/step.count)*100)}%</span>
+                        <span style="flex:1;"></span>
+                        <span style="font-size:12px;">流失 ${step.count - funnelData[i+1].count} 人</span>
+                       </div>`
+                    : ''}
+            </div>`;
+        }).join('');
+    }
+
+    function renderTrialMetrics() {
+        document.getElementById('trialMetrics').innerHTML = trialMetricsData.map(m => `
+        <div class="metric-item">
+            <div class="metric-top">
+                <span class="metric-label">${m.label}</span>
+                <span class="metric-value">${m.value}</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width:${m.pct}%; background:${m.color};"></div>
+            </div>
+        </div>`).join('');
+    }
+
+    function renderTrialAuto() {
+        document.getElementById('trialAuto').innerHTML = trialAutoRules.map((r, i) => `
+        <div class="auto-item">
+            <div class="auto-icon" style="background:${r.bg};">${r.icon}</div>
+            <div class="auto-info">
+                <div class="auto-name">${r.name}</div>
+            </div>
+            <label class="toggle-switch">
+                <input type="checkbox" ${r.active ? 'checked' : ''} onchange="toggleRule(${i})">
+                <span class="toggle-slider"></span>
+            </label>
+        </div>`).join('');
+    }
+
+    function toggleRule(i) {
+        trialAutoRules[i].active = !trialAutoRules[i].active;
+        showToast(trialAutoRules[i].active ? `✅ 已启用：${trialAutoRules[i].name}` : `⏸ 已暂停：${trialAutoRules[i].name}`);
+    }
+
+    function renderTrialTable() {
+        document.getElementById('trialTableBody').innerHTML = trialSchedule.map(t => `
+        <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:12px 14px;">${t.parent}</td>
+            <td style="padding:12px 14px;">${t.student}</td>
+            <td style="padding:12px 14px;">${t.grade}</td>
+            <td style="padding:12px 14px;">${t.subject}</td>
+            <td style="padding:12px 14px;">${t.time}</td>
+            <td style="padding:12px 14px;">${statusBadge(t.status)}</td>
+            <td style="padding:12px 14px;">
+                ${t.status === 'pending' || t.status === 'invited'
+                    ? `<button class="btn btn-sm btn-outline" onclick="confirmTrial('${t.parent}')">确认出席</button>`
+                    : t.status === 'completed'
+                        ? `<button class="btn btn-sm btn-primary" onclick="showToast('📝 反馈已收集并归档！')">收集反馈</button>`
+                        : '—'
+                }
+            </td>
+        </tr>`).join('');
+    }
+
+    function confirmTrial(parent) {
+        const item = trialSchedule.find(t => t.parent === parent);
+        if (item) { item.status = 'confirmed'; renderTrialTable(); }
+        showToast(`✅ ${parent} 试听已确认，日历邀请已发送！`);
+    }
+
+    // ==================== RENDER: COMMUNICATION ====================
+    function renderContactList() {
+        document.getElementById('contactList').innerHTML = contacts.map(c => `
+        <div class="contact-item ${activeContact === c.id ? 'selected' : ''}" onclick="selectContact(${c.id})">
+            <div class="contact-avatar" style="background:${c.bg};">${c.avatar}</div>
+            <div class="contact-info">
+                <div class="contact-name">${c.name}</div>
+                <div class="contact-last">学生：${c.student}</div>
+            </div>
+            ${c.unread ? '<div class="unread-dot"></div>' : ''}
+        </div>`).join('');
+    }
+
+    function selectContact(id) {
+        activeContact = id;
+        const c = contacts.find(x => x.id === id);
+        c.unread = false;
+        renderContactList();
+        document.getElementById('chatAvatar').textContent = c.avatar;
+        document.getElementById('chatAvatar').style.background = c.bg;
+        document.getElementById('chatTitle').textContent = c.name;
+        document.getElementById('chatSubtitle').textContent = `学生：${c.student}`;
+        document.getElementById('chatBody').innerHTML = c.messages.map(m => `
+        <div class="message ${m.from === 'parent' ? 'received' : 'sent'}">
+            <div class="msg-avatar" style="background:${m.from === 'parent' ? c.bg : '#ede9fe'};">${m.from === 'parent' ? c.avatar : '👩‍💼'}</div>
+            <div>
+                <div class="msg-bubble">${m.text}</div>
+                <div class="msg-time">${m.time}</div>
+            </div>
+        </div>`).join('');
+        const body = document.getElementById('chatBody');
+        body.scrollTop = body.scrollHeight;
+    }
+
+    function sendMessage() {
+        const input = document.getElementById('msgInput');
+        const text = input.value.trim();
+        if (!text || !activeContact) { showToast('请先选择联系人并输入消息'); return; }
+        const c = contacts.find(x => x.id === activeContact);
+        c.messages.push({ from: 'staff', text, time: '刚刚' });
+        input.value = '';
+        selectContact(activeContact);
+        showToast('✅ 消息已发送并同步到 CRM 跟进记录！');
+    }
+
+    document.getElementById('msgInput').addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+    });
+
+    // ==================== RENDER: ANALYTICS ====================
+    function renderChannelChart() {
+        document.getElementById('channelChart').innerHTML = channelData.map(c => `
+        <div class="analytics-bar-row">
+            <div class="a-label">${c.label}</div>
+            <div class="a-bar-wrap">
+                <div class="a-bar" style="width:${c.pct}%; background:${c.color};">${c.pct}%</div>
+            </div>
+            <div class="a-value" style="color:${c.color};">${c.value}</div>
+        </div>`).join('');
+    }
+
+    function renderSalesChart() {
+        document.getElementById('salesChart').innerHTML = salesData.map(s => `
+        <div class="analytics-bar-row">
+            <div class="a-label">${s.name}</div>
+            <div class="a-bar-wrap">
+                <div class="a-bar" style="width:${parseFloat(s.rate)}%; background:${s.color};">${s.rate}</div>
+            </div>
+            <div class="a-value" style="color:${s.color};">${s.converted}</div>
+        </div>`).join('') +
+        `<div class="divider"></div>
+        <div class="text-muted">数值为成单数，进度条为转化率</div>`;
+    }
+
+    function renderAutoEffects() {
+        document.getElementById('autoEffects').innerHTML = autoEffects.map(a => `
+        <div style="display:flex;align-items:center;gap:12px;padding:12px;background:var(--bg);border-radius:10px;margin-bottom:10px;">
+            <div style="width:36px;height:36px;border-radius:8px;background:${a.bg};display:flex;align-items:center;justify-content:center;font-size:18px;">${a.icon}</div>
+            <div style="flex:1;">
+                <div style="font-size:13px;font-weight:700;">${a.name}</div>
+                <div style="font-size:11px;color:var(--text-muted);">${a.before} → ${a.after}</div>
+            </div>
+            <span class="badge badge-green">${a.delta}</span>
+        </div>`).join('');
+    }
+
+    function renderTrendChart() {
+        const maxLeads = Math.max(...trendData.map(d => d.leads));
+        document.getElementById('trendChart').innerHTML = `
+        <div style="display:flex;align-items:flex-end;gap:10px;height:140px;padding:0 4px;">
+            ${trendData.map(d => `
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+                <div style="font-size:11px;color:var(--primary);font-weight:700;">${d.converted}</div>
+                <div style="width:100%;display:flex;flex-direction:column;gap:2px;align-items:center;">
+                    <div style="width:80%;background:var(--primary);border-radius:4px 4px 0 0;height:${Math.round((d.leads/maxLeads)*100)}px;opacity:0.2;"></div>
+                    <div style="width:80%;background:var(--primary);border-radius:4px 4px 0 0;height:${Math.round((d.converted/maxLeads)*100)}px;margin-top:-${Math.round((d.leads/maxLeads)*100)}px;"></div>
+                </div>
+                <div style="font-size:11px;color:var(--text-muted);">${d.day}</div>
+            </div>`).join('')}
+        </div>
+        <div style="display:flex;gap:16px;margin-top:12px;font-size:12px;">
+            <span style="display:flex;align-items:center;gap:6px;"><span style="width:12px;height:12px;border-radius:3px;background:var(--primary);opacity:0.2;display:inline-block;"></span>线索数</span>
+            <span style="display:flex;align-items:center;gap:6px;"><span style="width:12px;height:12px;border-radius:3px;background:var(--primary);display:inline-block;"></span>成单数</span>
+        </div>`;
+    }
+
+    // ==================== INIT ====================
+    renderKanban(leads);
+    renderFollowList();
+    renderFunnel();
+    renderTrialMetrics();
+    renderTrialAuto();
+    renderTrialTable();
+    renderContactList();
+    renderChannelChart();
+    renderSalesChart();
+    renderAutoEffects();
+    renderTrendChart();
+</script>
+</body>
+</html>
