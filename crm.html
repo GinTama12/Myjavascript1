@@ -870,6 +870,9 @@
         { id: 'signed',    label: '已签单',   color: '#059669', dot: '#34d399' },
     ];
 
+    // Baseline lead count already in system before this session (pre-loaded demo data count)
+    const BASELINE_LEAD_COUNT = 194;
+
     const leads = [
         { id:1, parent:'张爸爸', student:'张小明', grade:'五年级', channel:'微信', temp:'hot',  score:92, days:0, col:'new',       note:'孩子数学弱，希望提升' },
         { id:2, parent:'李妈妈', student:'李思思', grade:'三年级', channel:'转介绍', temp:'hot', score:88, days:1, col:'new',       note:'朋友介绍，英语口语' },
@@ -1084,7 +1087,7 @@
             temp: 'warm', score: 60, days: 0, col: 'new', note: '手动新增线索'
         });
         renderKanban(leads);
-        document.getElementById('stat-total').textContent = leads.length + 194;
+        document.getElementById('stat-total').textContent = leads.length + BASELINE_LEAD_COUNT;
         showToast(`✅ 线索"${name}"已成功录入！`);
     }
 
@@ -1311,6 +1314,7 @@
                 <div style="font-size:11px;color:var(--primary);font-weight:700;">${d.converted}</div>
                 <div style="width:100%;display:flex;flex-direction:column;gap:2px;align-items:center;">
                     <div style="width:80%;background:var(--primary);border-radius:4px 4px 0 0;height:${Math.round((d.leads/maxLeads)*100)}px;opacity:0.2;"></div>
+                    <!-- negative margin-top overlays the "converted" bar on top of the "leads" bar to create a stacked column effect -->
                     <div style="width:80%;background:var(--primary);border-radius:4px 4px 0 0;height:${Math.round((d.converted/maxLeads)*100)}px;margin-top:-${Math.round((d.leads/maxLeads)*100)}px;"></div>
                 </div>
                 <div style="font-size:11px;color:var(--text-muted);">${d.day}</div>
