@@ -3,5 +3,19 @@
     text-align: center;
 }
 body{
-   background-color: lightcyan;
+   background-image: url(/img/back.jpg);
+     background-repeat: repeat-x;
+}
+h1{
+    background-color: #6495ed;
+  
+}
+.article-title{
+   text-align: center;
+}
+.article-date{
+    text-align: right;
+}
+.article-content{
+    text-align: justify;
 }
