@@ -6,10 +6,10 @@ body{
    background-image: url(/img/back.jpg);
      background-repeat: repeat-x;
 }
-h1{
+/* h1{
     background-color: #6495ed;
   
-}
+} */
 .article-title{
    text-align: center;
 }
@@ -18,4 +18,26 @@ h1{
 }
 .article-content{
     text-align: justify;
+    text-indent: 100px;
+}
+a{
+    text-decoration: none;
+}
+.heading1{
+    text-decoration: overline; 
+}
+.heading2{
+    text-decoration: line-through;
+}
+.heading3{
+    text-decoration: underline;
+}
+a:link{
+    color:#000000;
+}
+a:visited{
+    color:#0000ff;
+}
+a:hover{
+    color:#ff0000;
 }
