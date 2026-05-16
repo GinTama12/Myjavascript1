@@ -41,3 +41,17 @@ a:visited{
 a:hover{
     color:#ff0000;
 }
+.list-a{
+   list-style-image: url('https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExN21ycTc0YTFwZ2xuMHJhNTl0bGZmcWpuOGdmcnJ4Y2VkMDZoNGhnaSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ISlgOhgYgB27vBIgEK/giphy.gif');
+}
+.list-b{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.list-c{
+    list-style-type: decimal;
+}
+.list-d{
+    list-style-type: lower-roman;
+}
