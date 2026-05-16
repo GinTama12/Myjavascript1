@@ -55,3 +55,33 @@ a:hover{
 .list-d{
     list-style-type: lower-roman;
 }
+table,th,td{
+    border: 1px solid green;
+}
+table{
+    border-collapse: collapse;
+    width: 100%;
+}
+th{
+    height: 50px;
+    vertical-align: middle;
+    background-color: black;
+    color: white;
+}
+td{
+    height: 50px;
+    text-align: center;
+    background-color: aliceblue;
+    padding: 15px;
+}
+.box-model{
+    background-color: lightgray;
+    width: 300px;
+    border: 5px outset black;
+    padding: 10px;
+    margin: 100px;
+}
+.outline{
+    border: 2px solid red;
+    outline: 10px solid blue;
+}
