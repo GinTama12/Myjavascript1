@@ -181,5 +181,31 @@
 <hr>
 <h1>轮廓</h1>
 <p class="outline">这是一个段落，位于轮廓部分。</p>
+<hr>
+<div id="time-box" class="box-model1">
+
+</div>
+<script>
+    function updateTime() {
+        const timeBox = document.getElementById('time-box');
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        timeBox.textContent = `当前时间：${hours}:${minutes}:${seconds}`;
+    }
+    setInterval(updateTime, 1000);
+    updateTime(); // 初始化显示时间
+</script>
+<a href="">不占一行吗</a>
+<a href="">你和上面的在一行吗</a>
+<div class="nav">
+    <ul>
+        <li><a href="">首页</a></li>
+        <li><a href="">文章</a></li>
+        <li><a href="">关于我们</a></li>
+        <li><a href="">招聘</a></li>
+    </ul>
+</div>
 </body>
 </html>

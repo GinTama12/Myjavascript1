@@ -73,6 +73,7 @@ td{
     text-align: center;
     background-color: aliceblue;
     padding: 15px;
+    color: black;
 }
 .box-model{
     background-color: lightgray;
@@ -80,8 +81,28 @@ td{
     border: 5px outset black;
     padding: 10px;
     margin: 100px;
+    /* 隐藏元素，不占用空间 */
+    display: none;
 }
 .outline{
     border: 2px solid red;
     outline: 10px solid blue;
+}
+.box-model1{
+    background-color: lightgray;
+    width: 300px;
+    border: 5px outset black;
+    padding: 20px;
+    margin:0 auto;
+    color:pink;
+    /* 隐藏元素，占用空间 */
+    /* visibility: hidden;
+ */
+}
+*{
+    color: red;
+}
+.nav li{
+    display: inline;
+    margin-right: 20px;
 }
