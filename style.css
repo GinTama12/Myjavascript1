@@ -20,9 +20,7 @@ body{
     text-align: justify;
     text-indent: 100px;
 }
-a{
-    text-decoration: none;
-}
+
 .heading1{
     text-decoration: overline; 
 }
@@ -102,7 +100,74 @@ td{
 *{
     color: red;
 }
-.nav li{
-    display: inline;
+.nav ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.nav ul li{
+    display: inline-block;
     margin-right: 20px;
+}
+.nav ul li a{
+    text-decoration: none;
+}
+.nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    /* z-index: 1000; */
+}
+.demo1{
+    background-color: rgb(125, 57, 57);
+    border:1px solid black;
+    width: 200px;
+    height: 200px;
+}
+.demo2{
+    background-color: rgb(125, 57, 57);
+    border:1px solid black;
+    width: 200px;
+    height: 200px;
+    
+}
+.demo3{
+    background-color: rgb(125, 57, 57);
+    border:1px solid black;
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.demo2 p{
+    position: relative;
+    right: -1000px;
+}
+.float1{
+    background-color: rgb(125, 57, 57);
+    border:1px solid black;
+    width: 200px;
+    height: 200px;
+    float: left; 
+    margin: 5px; 
+   
+}
+.float2{
+    background-color: rgb(125, 57, 57);
+    border:1px solid black;
+    width: 200px;
+    height: 200px;
+    float: left;
+        margin: 5px;
+}
+.float3{
+    background-color: rgb(125, 57, 57);
+    border:1px solid black;
+    width: 200px;
+    height: 200px;
+    float: left;
+    margin: 5px;
 }
