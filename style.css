@@ -171,3 +171,51 @@ td{
     float: left;
     margin: 5px;
 }
+.float4{
+    background-color: rgb(125, 57, 57);
+    border:1px solid black;
+    width: 200px;
+    height: 200px;
+    float: left;
+    margin: 5px;
+    clear: both;
+}
+.float5{
+    background-color: rgb(125, 57, 57);
+    border:1px solid black;
+    width: 200px;
+    height: 200px;
+    float: left;
+    margin: 5px;
+}
+.float6{
+    background-color: rgb(125, 57, 57);
+    border:1px solid black;
+    width: 200px;
+    height: 200px;
+    float: left;
+    margin: 5px;
+}
+.overflow1{
+    background-color: rgb(125, 57, 57);
+    border: 1px solid black;
+    padding: 15px;
+    width: 80%;
+    height: 100px;
+    color: white;
+    overflow:auto;
+}
+.fixed span{
+    position: fixed;
+    top: 10px;
+    left: 10px;
+}
+p.relative{
+    position:relative;
+    left: 50px;
+}
+.absolute{
+    position:absolute;
+    top: 1000px;
+    right: 10px;
+}
