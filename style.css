@@ -219,3 +219,44 @@ p.relative{
     top: 1000px;
     right: 10px;
 }
+.align1{
+    border: 1px solid black;
+    width: 300px;
+    height: 100px;
+    background-color: lightgray;
+    text-align: center;
+    margin:auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+}
+.align2 {
+   height: 200px;
+   width: 800px;
+   position: relative;
+   border: #000000 1px solid;
+   margin: 0 auto;
+    
+
+}
+.align2 p {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+}
+.Child-selector>p{
+    color:black;
+
+}
+.False-category a{
+    color: black;
+    text-decoration: none;
+}
+.False-category a:hover{
+    color: red;
+    
+
+}
