@@ -31,3 +31,30 @@ body{
 .nav1 li a:hover{
     background-color: #111;
 }
+.nav2 ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #333;
+    text-align: center;
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    bottom:0;
+}
+.nav2 li{
+    /* display: inline-block; */
+    display: inline-block;
+    border-right: 1px solid #bbb;
+}
+.nav2 li a{
+    display: block;
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    padding: 30px 150px;
+    text-decoration: none;
+}
+.nav2 li a:hover{
+    background-color: #111;
+}
