@@ -1,32 +1,61 @@
 body{
-    font-family: "Microsoft YaHei",微软雅黑,"Microsoft JhengHei",华文细黑,STHeiti,"WenQuanYi Micro Hei",宋体,arial,sans-serif;
-    font-size: 16px;
-    margin: 0;
-}
-.nav1 ul{
-    list-style-type: none;
     margin: 0;
     padding: 0;
-    width: 25%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+.nav ul{
+    list-style: none;
     background-color: #f1f1f1;
-    position: fixed;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    width: 25%;
     height: 100%;
+    position:fixed;
     overflow:auto;
 
 }
-.nav1 li a{
+.nav li a{
     display:block;
-    color: #000;
-    padding: 8px 16px;
-    text-decoration: none;
-    /* text-align: center; */
+    color:azure;
+    padding:10px 16px;
+    text-decoration:none;
+
 }
-.nav1 li a:hover{
-    background-color: #555;
+.nav li a:hover{
     color: white;
+    background-color: #555;
 }
 .content{
     margin-left: 25%;
     padding: 1px 16px;
     height: 1000px;
+}
+form{
+    margin-left: 0;
+    padding: 1px 16px;
+    height: 300px;
+    width: 300px;
+    border: 1px solid #ccc;
+    position: absolute;
+    top: 50%;
+    left: 700px;
+    transform: translate(-50%, -50%);
+}
+input{
+    width: 200px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+button{
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 200px;
 }

@@ -8,22 +8,26 @@ body{
     list-style-type: none;
     margin: 0;
     padding: 0;
-    background-color: #333;
+    background-color: #0f172a;
     text-align: center;
     overflow: hidden;
     position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
+    z-index: 10;
     /* bottom:0; */
 }
 .nav1 li{
     /* display: inline-block; */
     display: inline-block;
-    border-right: 1px solid #bbb;
+    /* border-right: 1px solid #bbb; */
 }
 .nav1 li a{
     display: block;
     color: white;
-    font-size: 30px;
+    font-size: 25px;
+    font-weight: 700;
     text-align: center;
     padding: 30px 150px;
     text-decoration: none;
@@ -31,30 +35,32 @@ body{
 .nav1 li a:hover{
     background-color: #111;
 }
-.nav2 ul{
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    background-color: #333;
-    text-align: center;
-    overflow: hidden;
-    position: fixed;
-    width: 100%;
-    bottom:0;
+.content{
+    margin-top: 140px;
+    padding: 20px;
 }
-.nav2 li{
-    /* display: inline-block; */
-    display: inline-block;
-    border-right: 1px solid #bbb;
+
+.content form{
+    width: 320px;
+    padding: 24px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
 }
-.nav2 li a{
+
+.content input,
+.content button{
     display: block;
-    color: white;
-    font-size: 30px;
-    text-align: center;
-    padding: 30px 150px;
-    text-decoration: none;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 12px;
+    padding: 12px;
 }
-.nav2 li a:hover{
-    background-color: #111;
+
+.content button{
+    margin-bottom: 0;
+    border: none;
+    color: #fff;
+    background-color: #0f172a;
+    cursor: pointer;
 }
