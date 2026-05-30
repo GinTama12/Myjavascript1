@@ -1,61 +1,39 @@
-body{
+.body{
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
 }
 .nav ul{
-    list-style: none;
-    background-color: #f1f1f1;
-    text-align: center;
-    padding: 0;
-    margin: 0;
-    width: 25%;
-    height: 100%;
-    position:fixed;
-    overflow:auto;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #D2CCDD;
+ 
+  border-radius: 10px;
+
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.nav li{
+  display: inline-block;
+  margin-left: 200px;
+  position: relative;
+  
+
 
 }
 .nav li a{
-    display:block;
-    color:azure;
-    padding:10px 16px;
-    text-decoration:none;
-
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
 }
 .nav li a:hover{
-    color: white;
-    background-color: #555;
-}
-.content{
-    margin-left: 25%;
-    padding: 1px 16px;
-    height: 1000px;
-}
-form{
-    margin-left: 0;
-    padding: 1px 16px;
-    height: 300px;
-    width: 300px;
-    border: 1px solid #ccc;
-    position: absolute;
-    top: 50%;
-    left: 700px;
-    transform: translate(-50%, -50%);
-}
-input{
-    width: 200px;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-}
-
-button{
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 200px;
+  background-color: #B7B6C1;
+  color: white;
 }

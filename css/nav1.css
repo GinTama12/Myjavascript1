@@ -1,66 +1,43 @@
-body{
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 16px;
-    margin: 0;
-
-}
-.nav1 ul{
+.nav ul{
     list-style-type: none;
     margin: 0;
     padding: 0;
-    background-color: #0f172a;
-    text-align: center;
-    overflow: hidden;
+     width: 15%;
+   
+    background-color: #D2CCDD;
+  
+    height: 100%;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 10;
-    /* bottom:0; */
+    border-radius: 10px;
+    
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-.nav1 li{
-    /* display: inline-block; */
-    display: inline-block;
-    /* border-right: 1px solid #bbb; */
+.nav li{
+    
+    
+    position: relative;
+    margin-top: 20px;
+
+
+    
 }
-.nav1 li a{
+.nav li a{
     display: block;
     color: white;
-    font-size: 25px;
-    font-weight: 700;
     text-align: center;
-    padding: 30px 150px;
+  
+    padding: 14px 16px;
     text-decoration: none;
+    
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+    
 }
-.nav1 li a:hover{
-    background-color: #111;
+.nav li a:hover{
+    background-color: #B7B6C1;
+    color: white;
 }
 .content{
-    margin-top: 140px;
+    margin-left: 15%;
     padding: 20px;
-}
-
-.content form{
-    width: 320px;
-    padding: 24px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #fff;
-}
-
-.content input,
-.content button{
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
-    margin-bottom: 12px;
-    padding: 12px;
-}
-
-.content button{
-    margin-bottom: 0;
-    border: none;
-    color: #fff;
-    background-color: #0f172a;
-    cursor: pointer;
+    height: 1000px;
 }
