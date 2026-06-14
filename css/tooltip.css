@@ -1,22 +1,20 @@
 .tooltip{
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px solid black;
-    
+    position:relative;
+    display:inline-block;
 }
 .tooltiptext{
-    display: none;
-    position: absolute;
-    background-color: black;
-    color: #fff;
+    display:none;
+    position:absolute;
+    background-color:black;
+    color:#fff;
+    padding:0px 5px;
+    border-radius:5px;
+    /* margin-top: -5px; */
+    /* left:50%; */
+    min-width: 120px;
     text-align: center;
-    padding: 5px 8px;
-    border-radius: 6px;
-    z-index: 1;
-    width: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-
+    
+    box-shadow: 0px 0px 10px rgba(27, 200, 177, 0.5);
 }
 .tooltip:hover .tooltiptext{
     display:block;
