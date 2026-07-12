@@ -1,0 +1,6 @@
+.gradient-background{
+    height: 200px;
+    width: 200px;
+    /* background-color: red; */
+    background-image: linear-gradient(to right, #e66465, #9198e5);
+}
