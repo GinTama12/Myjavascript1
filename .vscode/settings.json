@@ -6,6 +6,15 @@
     "strings": false
   },
   "emmet.showExpandedAbbreviation": "always",
+  "emmet.showAbbreviationSuggestions": true,
+  "editor.snippetSuggestions": "top",
+  "[html]": {
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": true
+    }
+  },
   "files.associations": {
     "*.html": "html",
     "*.css": "css",
