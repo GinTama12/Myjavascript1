@@ -1,0 +1,13 @@
+@font-face {
+    font-family: "Myfont";
+    src: url("../fonts/CJK SC/SweiSpringCJKsc-Regular.woff2") format("woff2"),
+         url("../fonts/CJK SC/SweiSpringCJKsc-Regular.woff") format("woff");
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+}
+
+
+div{
+    font-family: "Myfont", "Microsoft YaHei", sans-serif;
+}

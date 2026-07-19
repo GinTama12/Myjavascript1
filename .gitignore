@@ -1,1 +1,4 @@
 video/
+fonts/CJK SC/*
+!fonts/CJK SC/SweiSpringCJKsc-Regular.woff
+!fonts/CJK SC/SweiSpringCJKsc-Regular.woff2

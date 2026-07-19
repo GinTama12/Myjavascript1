@@ -1,0 +1,15 @@
+.column-text{
+ -moz-column-count:3; /* Firefox */
+	-webkit-column-count:3; /* Safari and Chrome */
+	column-count:3;
+    column-gap: 30px;
+    column-rule-style:dotted;
+    column-rule: 1px solid #000;
+}
+
+h1{
+    font-size: 2em;
+    text-align: center;
+    margin-bottom: 20px;
+    column-span: all;
+}
