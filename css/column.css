@@ -13,3 +13,7 @@ h1{
     margin-bottom: 20px;
     column-span: all;
 }
+.column-demo{
+    column-count: 3;
+    
+}
