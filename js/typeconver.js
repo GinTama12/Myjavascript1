@@ -10,6 +10,6 @@ var c = "3";
 var d = 4;
 console.log(`${c * d}是${typeof (c * d)}类型`); //隐式转换为数字
 //显示转换
-var e = "5.4";
-var f = Number(e);
-console.log(`${f}是${typeof f}类型`); //显示转换为数字
+let num = '123';
+let num1 = Number(num);
+document.write(`${num1}是${typeof (num1)}类型`);

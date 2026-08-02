@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  table,
+  th,
+  td {
+    border: 1px solid #245fda;
+
+
+  }
+
+  th {
+    height: 50px;
+    text-align: center;
+    background-color: #f2f2f2;
+
+  }
+
+  input[type="text"],
+  select,
+  input[type="submit"] {
+    width: 200px;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+</style>
+
+<body>
+  <div class="enter">
+    <form id="userForm">
+      <label for="name">姓名：</label>
+      <input type="text" id="name" name="name">
+      <label for="age">年龄：</label>
+      <input type="text" id="age" name="age">
+      <label for="gender">性别：</label>
+      <input type="text" id="gender" name="gender">
+      <input type="submit" value="提交">
+    </form>
+
+  </div>
+  <div class="Output">
+    <table>
+      <thead>
+        <tr>
+          <th>姓名</th>
+          <th>年龄</th>
+          <th>性别</th>
+        </tr>
+      </thead>
+      <tbody id="userList"></tbody>
+    </table>
+  </div>
+
+  <script>
+    const form = document.getElementById('userForm');
+    const userList = document.getElementById('userList');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault(); // 阻止表单默认跳转刷新
+
+      const name = form.name.value.trim();
+      const age = form.age.value.trim();
+      const gender = form.gender.value.trim();
+
+      if (!name || !age || !gender) {
+        alert('请填写完整信息');
+        return;
+      }
+
+      const tr = document.createElement('tr');
+      [name, age, gender].forEach(function (text) {
+        const td = document.createElement('td');
+        td.textContent = text;
+        td.style.textAlign = 'center';
+        tr.appendChild(td);
+      });
+      userList.appendChild(tr);
+
+      form.reset();
+    });
+  </script>
+</body>
+
+</html>
