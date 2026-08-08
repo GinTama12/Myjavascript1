@@ -19,22 +19,20 @@
     //   document.write("登录失败");
     // }
     //if 多分支
-    let score = prompt('请输入成绩');
-    score = Number(score);
+    let score = +prompt('请输入成绩');
+
     if (score >= 90) {
-      document.write('优秀')
+      alert('优秀')
     }
-    else if (score >= 70 && score < 90) {
-      document.write('良好')
+    else if (score >= 70) {
+      alert('良好')
     }
-    else if (score >= 60 && score <= 70) {
-      document.write('及格')
+    else if (score >= 60) {
+      alert('及格')
     }
     else {
-      document.write('不及格')
+      alert('不及格')
     }
-
-
 
   </script>
 
