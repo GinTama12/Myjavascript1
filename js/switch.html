@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const input = prompt('请输入一个数字');
+
+    if (input === null) {
+      alert('已取消输入');
+    } else {
+      const value = Number(input.trim());
+
+      if (input.trim() === '' || !Number.isFinite(value)) {
+        alert('请输入一个有效数字');
+      } else {
+        switch (value) {
+          case 1:
+            alert('你输入的是1');
+            break;
+          case 2:
+            alert('你输入的是2');
+            break;
+          case 3:
+            alert('你输入的是3');
+            break;
+          default:
+            alert('你输入的不是1、2、3');
+        }
+      }
+    }
+  </script>
+
+</body>
+
+</html>
