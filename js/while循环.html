@@ -9,25 +9,48 @@
 
 <body>
   <script>
+    //页面输出1-100
     let i = 1;
-    let sum = 0;
     while (i <= 100) {
-      sum = sum + i;
+      document.write(`${i}<br>`);
       i++;
-
-    } // 5050
-    document.write(sum);
-    document.write("<br>");
-    //计算1-100之间所有偶数和
+    }
+    //计算从1加到100的总和输出
     let j = 1;
-    let evenSum = 0;
+    let sum = 0;
     while (j <= 100) {
-      if (j % 2 === 0) {
-        evenSum = evenSum + j;
-      }
+      sum = sum + j;
       j++;
     }
-    document.write(evenSum);
+    document.write(`1-100的总和为：${sum}<br>`);
+    //计算1-100之间的偶数和输出
+    let k = 1;
+    let sum1 = 0;
+    while (k <= 100) {
+      if (k === 50) {
+        k++;
+        continue;
+
+      }
+      if (k % 2 === 0) {
+        sum1 = sum1 + k;
+
+      }
+
+      k++;
+    }
+    document.write(`1-100之间的偶数和为:${sum1}<br>`);
+    //页面弹出对话框，你爱我吗，如果回答是爱则结束，否则一直弹出对话框
+    let answer = prompt('你爱我吗？');
+    while (answer) {
+      if (answer == '爱') {
+        break;
+      }
+
+      answer = prompt("你居然不爱我，你爱我吗？");
+
+    }
+
 
   </script>
 
