@@ -1,4 +1,21 @@
 {
+  "workbench.colorTheme": "Abyss",
+  "workbench.colorCustomizations": {
+    "editor.background": "#0B1020",
+    "editor.foreground": "#D7E3FF",
+    "editorLineNumber.foreground": "#49617F",
+    "editorLineNumber.activeForeground": "#52E0D0",
+    "editorCursor.foreground": "#52E0D0",
+    "editor.selectionBackground": "#164A5C",
+    "editor.lineHighlightBackground": "#101D32",
+    "sideBar.background": "#0A1428",
+    "activityBar.background": "#07101F",
+    "activityBar.foreground": "#52E0D0",
+    "statusBar.background": "#123448",
+    "statusBar.foreground": "#D7E3FF",
+    "titleBar.activeBackground": "#07101F",
+    "titleBar.activeForeground": "#D7E3FF"
+  },
   "emmet.triggerExpansionOnTab": true,
   "editor.quickSuggestions": {
     "other": true,
