@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //1、循环ATM项目复习
+    let balance = 0;//余额
+    while (true) {
+      let choice = prompt(`请选择操作：1.存款 2.取款 3.查询余额 4.退出`);
+      if (choice === '4') {
+        break;
+      }
+      //2、判断用户输入的操作是否合法
+      if (choice !== '1' && choice !== '2' && choice !== '3') {
+        alert('输入的操作不合法，请重新输入');
+        continue;
+      }
+      switch (choice) {
+        case '1':
+          let deposit = Number(prompt('请输入存款金额'));
+          if (deposit < 0 || isNaN(deposit)) {
+            alert('存款金额不合法');
+          } else {
+            balance = balance + deposit;
+            alert(`存款成功，当前余额为${balance}`);
+          }
+          break;
+
+        case '2':
+          let withdraw = Number(prompt('请输入取款金额'));
+          if (withdraw < 0 || isNaN(withdraw)) {
+            alert('取款金额不合法');
+          } else if (withdraw > balance) {
+            alert('余额不足');
+          } else {
+            balance = balance - withdraw;
+            alert(`取款成功，当前余额为${balance}`);
+          }
+          break;
+        case '3':
+          alert(`当前余额为${balance}`);
+          break;
+      }
+    }
+  </script>
+
+</body>
+
+</html>
