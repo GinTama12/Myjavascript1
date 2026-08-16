@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //输出1-100岁
+    for (let i = 1; i <= 100; i++) {
+      document.write(`${i}岁<br>`);
+    }
+    //求1-100之间所有偶数的和
+    let sum = 0;
+    for (let j = 1; j <= 100; j++) {
+      if (j % 2 == 0) {
+        sum += j;
+      }
+
+    }
+    document.write(`1-100之间所有偶数的和为：${sum}`);
+
+  </script>
+
+</body>
+
+</html>
