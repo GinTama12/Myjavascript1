@@ -9,10 +9,17 @@
 
 <body>
   <script>
-    //数组遍历
-    let arr = ['小明', '小红', '小刚', '小李', '小王'];
+    // 数组遍历
+    let arr = ['做爱', '打游戏', '睡觉', '吃饭'];
     for (let i = 0; i < arr.length; i++) {
-      document.write(arr[i]);
+      //跳出打游戏
+      if (arr[i] === '打游戏') {
+        continue;
+      }
+      //输出
+      document.write(`${arr[i]}<br>`);
+
+
     }
   </script>
 
