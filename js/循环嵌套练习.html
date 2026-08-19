@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  h1 {
+    text-align: center;
+  }
+
+  table {
+    margin: auto;
+    height: 100%;
+    width: 50%;
+    background-color: aqua;
+    border: 1px solid black;
+
+
+    border-collapse: collapse;
+    /* background-color: blue; */
+  }
+
+
+
+  td {
+
+    text-align: center;
+    border: 1px solid black;
+    padding: 10px;
+    background-color: aqua;
+    box-shadow: inset 0 0 10px #000000;
+  }
+</style>
+
+<body>
+
+  <script>
+    //用户输入行和列打印出对应的星星
+    // let row = prompt('请输入行数');
+    // let col = prompt('请输入列数');
+    // for (let i = 1; i <= row; i++) {
+    //   for (let j = 1; j <= col; j++) {
+    //     document.write('⭐');
+    //   }
+    //   document.write('<br>');//换行
+    // }
+    //打印倒三角星星
+    // for (let i = 5; i >= 1; i--) {
+    //   for (let j = 1; j <= i; j++) {
+    //     document.write('⭐');
+    //   }
+    //   document.write('<br>');
+    // }
+    //打印正三角星星
+    // for (let i = 1; i <= 5; i++) {
+    //   for (let j = 1; j <= i; j++) {
+    //     document.write('⭐');
+    //   }
+
+    //   document.write('<br>');
+    // }
+    //九九乘法表
+    document.write('<h1>九九乘法表</h1>');
+    document.write('<table>');
+    for (let i = 1; i <= 9; i++) {
+      document.write('<tr>');
+      for (let j = 1; j <= i; j++) {
+        document.write(`<td>${j}*${i}=${j * i}</td>`);
+      }
+      document.write('</tr>');
+    }
+
+    document.write('</table>');
+  </script>
+
+</body>
+
+</html>
