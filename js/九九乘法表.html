@@ -7,28 +7,28 @@
   <title>Document</title>
 </head>
 <style>
-  table {
-    border-collapse: collapse;
-  }
+  span {
+    display: inline-block;
+    width: 130px;
+    text-align: center;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 0 5px #eee;
+    border-radius: 5px;
+    background-color: rgb(83, 83, 38);
+    color: azure;
 
-  td {
-    border: 1px solid black;
-    padding: 10px;
   }
 </style>
 
 <body>
   <script>
-    document.write('<h1>九九乘法表</h1>');
-    document.write('<table>');
     for (let i = 1; i <= 9; i++) {
-      document.write('<tr>');
       for (let j = 1; j <= i; j++) {
-        document.write(`<td>${j}*${i}=${j * i}</td>`);
+        document.write(`<span>${j}*${i}=${j * i}&nbsp;&nbsp;</span>`);
       }
-      document.write('</tr>');
+      document.write('<br>');
     }
-    document.write('</table>');
   </script>
 
 </body>
