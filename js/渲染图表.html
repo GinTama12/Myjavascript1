@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- 字符编码：指定页面使用UTF-8编码，支持中文等各种字符 -->
+  <meta charset="UTF-8">
+  <!-- 视口设置：让页面在手机等移动设备上正常显示，宽度适配屏幕宽度，初始缩放比例1.0 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 网页标题：显示在浏览器标签页上 -->
+  <title>销售额图表</title>
+
+  <style>
+    /* ========== 全局样式 ========== */
+    body {
+      font-family: Arial, sans-serif;
+      /* 设置字体为Arial，无衬线字体 */
+      padding: 20px;
+      /* 内边距：页面内容周围留白20像素 */
+      background-color: #f5f5f5;
+      /* 背景颜色：浅灰色 */
+    }
+
+    /* ========== 标题样式 ========== */
+    h1 {
+      text-align: center;
+      /* 文本居中对齐 */
+      color: #333;
+      /* 文字颜色：深灰色 */
+    }
+
+    /* ========== 图表包装器（外层容器） ========== */
+    .chart-wrapper {
+      background: white;
+      /* 背景颜色：白色 */
+      padding: 30px;
+      /* 内边距：容器内部留白30像素 */
+      border-radius: 8px;
+      /* 圆角：8像素的圆角 */
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      /* 阴影效果：水平0 垂直2px 模糊10px 半透明黑色 */
+      max-width: 800px;
+      /* 最大宽度：800像素 */
+      margin: 20px auto;
+      /* 外边距：上下20px，左右自动（居中显示） */
+    }
+
+    /* ========== 柱状图容器（放置所有柱子） ========== */
+    .box {
+      width: 100%;
+      /* 宽度：占满父容器100% */
+      height: 300px;
+      /* 高度：固定300像素 */
+      display: flex;
+      /* 使用Flexbox布局（可以灵活排列子元素） */
+      justify-content: space-around;
+      /* 主轴对齐：子元素均匀分布在容器中 */
+      align-items: flex-end;
+      /* 交叉轴对齐：所有子元素靠底部对齐（底端对齐） */
+      border-left: 2px solid #333;
+      /* 左边框：2像素黑线（Y轴） */
+      border-bottom: 2px solid #333;
+      /* 下边框：2像素黑线（X轴） */
+      padding: 20px 0;
+      /* 内边距：上下20px，左右0 */
+      position: relative;
+      /* 定位：相对定位，作为绝对定位元素的参考 */
+    }
+
+    /* ========== 单个柱子样式 ========== */
+    .chart {
+      width: 60px;
+      /* 宽度：60像素 */
+      background: linear-gradient(to top, #4CAF50, #81C784);
+      /* 背景：从下到上的绿色渐变 */
+      border-radius: 4px 4px 0 0;
+      /* 圆角：上方两个圆角，下方方形（柱子顶部圆润） */
+      cursor: pointer;
+      /* 鼠标光标：鼠标悬停时显示手指指针 */
+      transition: all 0.3s;
+      /* 过渡效果：所有属性变化在0.3秒内完成（平滑动画） */
+      position: relative;
+      /* 定位：相对定位，用于标签定位 */
+      display: flex;
+      /* 使用Flexbox：可以灵活排列内部元素 */
+      flex-direction: column;
+      /* 方向：垂直排列（从上到下） */
+      align-items: center;
+      /* 对齐：子元素水平居中 */
+      justify-content: flex-start;
+      /* 对齐：子元素靠顶部 */
+      padding-top: 5px;
+      /* 内边距：顶部5像素 */
+      box-sizing: border-box;
+      /* 盒模型：padding和border包含在width内 */
+    }
+
+    /* ========== 柱子悬停效果（鼠标移上去时） ========== */
+    .chart:hover {
+      background: linear-gradient(to top, #2196F3, #64B5F6);
+      /* 背景变为蓝色渐变 */
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      /* 添加阴影效果，显得浮起来 */
+    }
+
+    /* ========== 柱子内的数值文本 ========== */
+    .chart-value {
+      color: white;
+      /* 文字颜色：白色 */
+      font-weight: bold;
+      /* 字体加粗 */
+      font-size: 14px;
+      /* 字体大小：14像素 */
+      margin-bottom: 10px;
+      /* 下外边距：距离其他元素10像素 */
+    }
+
+    /* ========== 柱子下方的标签（第1季度、第2季度等） ========== */
+    .chart-label {
+      position: absolute;
+      /* 绝对定位：相对于.chart容器定位 */
+      bottom: -30px;
+      /* 距离底部：-30px（放在柱子下方） */
+      left: 50%;
+      /* 水平位置：距离左边50%（容器宽度的中点） */
+      transform: translateX(-50%);
+      /* 变换：向左移动自身宽度的50%（使标签居中） */
+      font-weight: bold;
+      /* 字体加粗 */
+      color: #333;
+      /* 文字颜色：深灰色 */
+      white-space: nowrap;
+      /* 文本不换行 */
+    }
+
+    /* ========== 统计信息容器 ========== */
+    .chart-info {
+      margin-top: 50px;
+      /* 上外边距：距离上面元素50像素 */
+      padding: 15px;
+      /* 内边距：容器内部留白15像素 */
+      background-color: #f9f9f9;
+      /* 背景颜色：极浅灰色 */
+      border-radius: 4px;
+      /* 圆角：4像素 */
+    }
+
+    /* ========== 统计信息中的段落 ========== */
+    .chart-info p {
+      margin: 8px 0;
+      /* 外边距：上下8px，左右0（段落间距） */
+      color: #555;
+      /* 文字颜色：中等灰色 */
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ========== 页面标题 ========== -->
+  <h1>📊 季度销售额图表</h1>
+
+  <!-- ========== 图表主容器 ========== -->
+  <div class="chart-wrapper">
+
+    <!-- ========== 柱状图区域 ========== -->
+    <div class="box">
+
+      <!-- ========== 第1季度柱子 ========== -->
+      <div class="chart" id="chart1">
+        <!-- 显示销售额数值 -->
+        <div class="chart-value" id="value1"></div>
+        <!-- 显示季度标签 -->
+        <div class="chart-label">第1季度</div>
+      </div>
+
+      <!-- ========== 第2季度柱子 ========== -->
+      <div class="chart" id="chart2">
+        <div class="chart-value" id="value2"></div>
+        <div class="chart-label">第2季度</div>
+      </div>
+
+      <!-- ========== 第3季度柱子 ========== -->
+      <div class="chart" id="chart3">
+        <div class="chart-value" id="value3"></div>
+        <div class="chart-label">第3季度</div>
+      </div>
+
+      <!-- ========== 第4季度柱子 ========== -->
+      <div class="chart" id="chart4">
+        <div class="chart-value" id="value4"></div>
+        <div class="chart-label">第4季度</div>
+      </div>
+    </div>
+
+    <!-- ========== 统计信息面板 ========== -->
+    <div class="chart-info">
+      <!-- 总销售额 -->
+      <p><strong>总销售额：</strong><span id="total">0</span></p>
+      <!-- 平均销售额 -->
+      <p><strong>平均销售额：</strong><span id="average">0</span></p>
+      <!-- 最高销售额 -->
+      <p><strong>最高销售额：</strong><span id="max">0</span></p>
+      <!-- 最低销售额 -->
+      <p><strong>最低销售额：</strong><span id="min">0</span></p>
+    </div>
+  </div>
+
+</body>
+
+</html>

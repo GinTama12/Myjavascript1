@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .chart-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 300px;
+    border: 1px solid #ccc;
+    padding-bottom: 40px;
+    width: 500px;
+    margin: 0 auto;
+    /* ← 给下面的标签留空间 */
+  }
+
+  .bar {
+    width: 50px;
+    height: 100px;
+    background-color: green;
+    position: relative;
+    /* ← 关键！让绝对定位的标签相对它定位 */
+    display: flex;
+    /* ← 柱子内部内容垂直排列 */
+    flex-direction: column;
+    align-items: center;
+    border-radius: 4px 4px 0 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .chart-box .bar:hover {
+    background: linear-gradient(to top, #219, #ccc);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transform: translate(-5px);
+  }
+
+  .chart-box .bar .value {
+    position: absolute;
+    top: 20px;
+    font-size: 14px;
+    color: white;
+  }
+
+  .chart-box .bar .label {
+    position: absolute;
+    bottom: -30px;
+    font-size: 14px;
+    color: #333;
+  }
+
+  h1 {
+    text-align: center;
+
+  }
+
+  img {
+    width: 50px;
+    height: 50px;
+  }
+</style>
+
+
+<body>
+  <h1><img src="../img/图表柱图.png" alt="">季度销售额</h1>
+  <!-- 图表框架 -->
+
+
+  <script>
+    let array = [];
+    for (let i = 1; i <= 4; i++) {
+      let number = prompt(`请输入第${i}季度的销售额`);
+      array.push(number);
+    }
+    document.write(` <div class="chart-box">`);
+    for (let i = 0; i < array.length; i++) {
+      document.write(` <!-- 图表柱子 -->
+    <div style="height: ${array[i]}px" class="bar">
+      <!-- 柱子内容 -->
+      <span class="value">${array[i]}</span>
+      <h1 class="label">Q${i + 1}</h1>
+
+    </div>`);
+    }
+    document.write(`</div>`);
+
+  </script>
+
+</body>
+
+</html>

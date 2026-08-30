@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let array = ['刘德华', '张学友', '周杰伦'];
+    array.splice(1, 2);
+    array.push('王力宏');
+    array.unshift('林俊杰');
+    array.pop();// 删除最后一个元素
+    array.shift();// 删除第一个元素
+    array.splice(1, 0, '蔡依林', '张惠妹');
+    // ctrl
+    document.write(array);  
+  </script>
+
+</body>
+
+</html>

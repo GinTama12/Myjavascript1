@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let array = [24, 3, 5, 6, 7, 8, 9];
+    let newArray = [];
+    for (let i = 0; i < array.length; i++) {
+
+      if (array[i] !== 5) {
+        newArray.push(array[i]);
+      }
+    }
+    document.write(`原数组为：${array}<br>`);
+    document.write(`筛选后的数组为：${newArray}<br>`);
+
+  </script>
+
+</body>
+
+</html>
