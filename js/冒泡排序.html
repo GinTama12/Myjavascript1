@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //数组冒泡排序
+    let array = [4, 2, 3, 2, 4, 5, 6, 7, 8, 9, 1];
+    for (let i = 0; i < array.length - 1; i++) {
+      for (let j = 0; j < array.length - 1 - i; j++) {
+        if (array[j] > array[j + 1]) {
+          let temp = array[j];//把4放到临时变量
+          array[j] = array[j + 1];//把2放到前面
+          array[j + 1] = temp;//把4放到后面
+        }
+
+      }
+    }
+    document.write(array);
+  </script>
+
+</body>
+
+</html>
