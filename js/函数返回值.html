@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function getSum(num1, num2) {
+      let sum = 0;
+      for (let i = num1; i <= num2; i++) {
+        sum += i;
+      }
+      return sum;
+    }
+    let num1 = Number(prompt("请输入起始数字"));
+    let num2 = Number(prompt("请输入结束数字"));
+    let sum = getSum(num1, num2);
+    alert(sum);
+  </script>
+
+</body>
+
+</html>

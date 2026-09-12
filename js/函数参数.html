@@ -1,21 +1,120 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>函数参数求和</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      font-family: "Microsoft YaHei", Arial, sans-serif;
+      background: linear-gradient(135deg, #6a8dff 0%, #a06bff 100%);
+    }
+
+    .card {
+      width: min(90%, 420px);
+      padding: 40px 32px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+    }
+
+    .card h1 {
+      margin: 0 0 8px;
+      font-size: 22px;
+      color: #333;
+    }
+
+    .card p {
+      margin: 0 0 24px;
+      color: #888;
+      font-size: 14px;
+    }
+
+    .result {
+      display: inline-block;
+      min-width: 160px;
+      padding: 16px 24px;
+      font-size: 48px;
+      font-weight: bold;
+      color: #6a4bff;
+      background: #f2eeff;
+      border-radius: 14px;
+    }
+
+    .inputs {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .inputs input {
+      width: 90px;
+      padding: 10px 12px;
+      font-size: 16px;
+      text-align: center;
+      border: 2px solid #d8d0ff;
+      border-radius: 10px;
+      outline: none;
+    }
+
+    .inputs input:focus {
+      border-color: #6a4bff;
+    }
+
+    .inputs span {
+      color: #888;
+      font-size: 14px;
+    }
+  </style>
 </head>
 
 <body>
-  <script>
-    function getSum(j, k) {
-      // let sum = 0;
+  <main class="card">
+    <h1>函数参数求和</h1>
+    <p>输入起止数字,计算区间内所有整数的总和</p>
+    <div class="inputs">
+      <input type="number" id="num1" value="1">
+      <span>到</span>
+      <input type="number" id="num2" value="100">
+    </div>
+    <output class="result" id="result"></output>
+  </main>
 
-      let sum = j + k;
-      document.write(sum);
+  <script>
+    function getSum(num1, num2) {
+      let sum = 0;
+      for (let i = num1; i <= num2; i++) {
+        sum += i;
+
+      }
+      return sum;
     }
-    getSum(2, 3);
+
+    const num1Input = document.getElementById('num1');
+    const num2Input = document.getElementById('num2');
+    const resultEl = document.getElementById('result');
+
+    function updateResult() {
+      const num1 = Number(num1Input.value);
+      const num2 = Number(num2Input.value);
+      resultEl.textContent = getSum(num1, num2);
+    }
+
+    num1Input.addEventListener('input', updateResult);
+    num2Input.addEventListener('input', updateResult);
+    updateResult();
   </script>
 
 </body>
