@@ -7,30 +7,27 @@
   <title>Document</title>
 </head>
 
-
 <body>
   <script>
-    let second = +prompt("请输入一个数字");
-    function getTime(second) {
-      let h = Math.floor(second / 3600);
-      let m = Math.floor((second % 3600) / 60);
-      let s = second % 60;
-      //补零
+    //把秒数转换为时分秒
+    function getTime(seconds) {
+      let h = Math.floor(seconds / 3600);
+      let m = Math.floor(seconds % 3600 / 60);
+      let s = seconds % 60;
       if (h < 10) {
-        h = "0" + h;
+        h = '0' + h;
       }
       if (m < 10) {
-        m = "0" + m;
+        m = '0' + m;
       }
       if (s < 10) {
-        s = "0" + s;
+        s = '0' + s;
       }
-      return h + "时" + m + "分" + s + "秒";
+      return `${h}时${m}分${s}秒`;
 
     }
-    document.write(getTime(second));
+    document.write(getTime(1000));
   </script>
-
 
 </body>
 
