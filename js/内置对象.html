@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //内置对象
+    //1. 数组对象
+    // const arr = [1, 2, 3, 4, 5];
+    // console.log(arr.length); // 输出数组的长度
+    // console.log(arr.join('-')); // 将数组元素连接成字符串
+
+    // //2. 日期对象
+    // const date = new Date();
+    // console.log(date.toDateString()); // 输出日期字符串
+    // console.log(date.getFullYear()); // 输出年份
+
+    // //3. 数学对象
+    // console.log(Math.PI); // 输出圆周率
+    // console.log(Math.sqrt(16)); // 输出平方根
+    // document.write(Math.ceil(4.2)); // 输出向上取整的值
+
+    // document.write(Math.floor(4.8));  // 输出向下取整的值
+    // document.write(Math.round(4.4));  // 输出四舍五入的值
+    // document.write(Math.max(1, 5, 3)); // 输出最大值
+    // document.write(Math.min(1, 5, 3)); // 输出最小值
+    // //输出随机数
+    // const randomNum = Math.random(); // 生成0到1之间的随机数
+    // document.write(randomNum); // 输出随机数
+    //输出0-10之间的随机整数
+    // const randomInt = Math.floor(Math.random() * 100);
+    // document.write(randomInt);
+    //随机数组
+    // let randomArray = ['刘德华', '张学友', '周杰伦', '王力宏', '林俊杰'];
+    // let randomInt = Math.floor(Math.random() * randomArray.length);//得到随机数组下标
+    // // let randomElement = randomArray[randomIndex];
+    // document.write(randomArray[randomInt]); // 输出随机元素
+    //生成5-10之间的随机整数
+    // const randomInt = Math.floor(Math.random() * 6) + 5;
+    // document.write(randomInt);
+    // document.write("<br>");
+    // //生成-33-88 之间的随机整数
+    // const randomInt2 = Math.floor(Math.random() * 122) - 33;
+    // document.write(randomInt2);
+    // document.write("<br>");
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    document.write(getRandomInt(5, 100)); // 输出5到100之间的随机整数
+    // //output average
+    // const numbers = [1, 5, 3];
+    // const average = numbers.reduce((sum, num) => sum + num, 0) / numbers.length;
+    // document.write(average); // 输出平均值
+
+    // //4. 字符串对象
+    // const str = "Hello, World!";
+    // console.log(str.length); // 输出字符串长度
+    // console.log(str.toUpperCase()); // 转换为大写
+
+  </script>
+
+</body>
+
+</html>

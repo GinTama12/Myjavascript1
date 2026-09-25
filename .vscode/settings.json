@@ -20,5 +20,6 @@
     "*.html": "html",
     "*.css": "css",
     "*.js": "javascript"
-  }
+  },
+  "liveServer.settings.port": 5501
 }

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th,
+    td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    /* 给表格加入鼠标悬停效果 */
+    tr:hover {
+      background-color: #5f1111;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 学生信息表 -->
+  <table>
+    <thead>
+      <tr>
+        <th>序号</th>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>年级</th>
+      </tr>
+
+    </thead>
+
+    <script>
+      // 定义学生信息数组
+      const students = [
+        { id: 1, name: '张三', age: 20, grade: '大一' },
+        { id: 2, name: '甄', age: 21, grade: '大二' },
+        { id: 3, name: '王五', age: 22, grade: '大三' },
+        { id: 4, name: '赵六', age: 23, grade: '大四' }
+      ];
+
+      //遍历学生信息数组
+      for (let i = 0; i < students.length; i++) {
+        document.write(`<tr>
+        <td>${students[i].id}</td>
+        <td>${students[i].name}</td>
+        <td>${students[i].age}</td>
+        <td>${students[i].grade}</td>
+      </tr>`);
+      }
+
+    </script>
+  </table>
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //随机点名
+    let names = ['张三', '李四', '王五', '赵六', '孙七', '周八', '吴九', '郑十'];
+    let randomIndex = Math.floor(Math.random() * names.length);
+    document.write(`随机点名结果：${names[randomIndex]}`);
+    //删除已点名的名字
+    names.splice(randomIndex, 1);
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // // 猜数字游戏
+    // let randomNumber = Math.floor(Math.random() * 10) + 1;
+    // let guess = Number(prompt("猜一个1到10之间的数字:"));
+    // while (true) {
+    //   if (isNaN(guess)) {
+    //     guess = Number(prompt("请输入一个有效的数字:"));
+    //   }
+    //   else if (guess > randomNumber) {
+    //     guess = Number(prompt("太大了，请再输入一次"));
+    //   }
+    //   else if (guess < randomNumber) {
+    //     guess = Number(prompt("太小了，请再输入一次"));
+    //   }
+    //   else {
+    //     alert("恭喜你，猜对了！");
+    //     break;
+    //   }
+
+    // }
+    //猜数字游戏，只能猜三次
+    let random = Math.floor(Math.random() * 10) + 1;
+    let guessedCorrectly = false;
+
+    for (let i = 1; i <= 3; i++) {
+      let guess = Number(prompt("猜一个1到10之间的数字"));
+      if (isNaN(guess)) {
+        alert("请输入一个有效的数字");
+      }
+      else if (guess > random) {
+        alert("太大了，请在输入一次");
+      }
+      else if (guess < random) {
+        alert("太小了，请再输入一次");
+      }
+      else {
+        guessedCorrectly = true;
+        alert("恭喜您，猜对了");
+        break;
+      }
+    }
+
+    if (!guessedCorrectly) {
+      alert("三次机会已用完，正确答案是 " + random);
+    }
+
+  </script>
+
+</body>
+
+</html>

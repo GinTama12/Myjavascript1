@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // // 生成随机颜色
+    // function getRandomColor() {
+    //   const letters = '0123456789ABCDEF';
+    //   let color = '#';
+    //   for (let i = 0; i < 6; i++) {
+    //     color += letters[Math.floor(Math.random() * 16)];
+    //   }
+    //   return color;
+    // }
+
+    // // 设置背景颜色为随机颜色
+    // document.body.style.backgroundColor = getRandomColor();
+    function getRandomColor(flag = true) {
+      if (flag) {
+        //声明个16位颜色的数组
+        //给声明啊
+
+
+        const arrary = '0123456789ABCDEF'
+        let color = '#';
+
+        for (let i = 1; i <= 6; i++) {
+          let random = Math.floor(Math.random() * 16);
+          color = color + random;
+
+        }
+        return color;
+
+      }
+      else {
+        let r = Math.floor(Math.random() * 256);
+        let g = Math.floor(Math.random() * 256);
+        let b = Math.floor(Math.random() * 256);
+        return `rgb(${r},${g},${b})`;
+      }
+
+    }
+    // 设置背景颜色为随机颜色
+    document.body.style.backgroundColor = getRandomColor(true);
+  </script>
+
+</body>
+
+</html>
