@@ -9,51 +9,38 @@
 
 <body>
   <script>
-    // // 猜数字游戏
-    // let randomNumber = Math.floor(Math.random() * 10) + 1;
-    // let guess = Number(prompt("猜一个1到10之间的数字:"));
-    // while (true) {
-    //   if (isNaN(guess)) {
-    //     guess = Number(prompt("请输入一个有效的数字:"));
-    //   }
-    //   else if (guess > randomNumber) {
-    //     guess = Number(prompt("太大了，请再输入一次"));
-    //   }
-    //   else if (guess < randomNumber) {
-    //     guess = Number(prompt("太小了，请再输入一次"));
-    //   }
-    //   else {
-    //     alert("恭喜你，猜对了！");
-    //     break;
-    //   }
+    //猜数字游戏
+    //获取1-10函数
+    function getRandom(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    let random = getRandom(1, 10);
 
-    // }
-    //猜数字游戏，只能猜三次
-    let random = Math.floor(Math.random() * 10) + 1;
-    let guessedCorrectly = false;
+    //设置个三次机会
+    let flag = true;
 
     for (let i = 1; i <= 3; i++) {
-      let guess = Number(prompt("猜一个1到10之间的数字"));
-      if (isNaN(guess)) {
-        alert("请输入一个有效的数字");
+      let num = +prompt("请输入1-10的数字");
+      //判断是否未数字
+      if (isNaN(num)) {
+        alert("请输入准确数字");
       }
-      else if (guess > random) {
-        alert("太大了，请在输入一次");
+      else if (num > random) {
+        alert('您输入太大了');
       }
-      else if (guess < random) {
-        alert("太小了，请再输入一次");
+      else if (num < random) {
+        alert('您输入太小了');
       }
       else {
-        guessedCorrectly = true;
-        alert("恭喜您，猜对了");
+        flag = false;
+        alert('您猜对了');
         break;
       }
-    }
 
-    if (!guessedCorrectly) {
-      alert("三次机会已用完，正确答案是 " + random);
     }
-
+    if (flag) {
+      alert('您的次数已经用完');
+    }
   </script>
 
 </body>

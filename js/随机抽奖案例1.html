@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .wrapper {
+      width: 840px;
+      height: 420px;
+      background: url(../img/123.png) no-repeat center / 100%;
+      padding: 100px 250px;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <strong>传智教育年会抽奖</strong>
+    <h1>一等奖: <span id="one">???</span></h1>
+    <h1>二等奖: <span id="two">???</span></h1>
+    <h1>三等奖: <span id="three">???</span></h1>
+  </div>
+  <script>
+    //声明数组
+    const arr = ['张三', '李四', '王五', '赵六', '田七', '孙八', '周九', '吴十', '郑十一', '陈十二', '刘十三', '黄十四', '马十五', '郭十六', '冯十七', '陈十八', '周十九', '林二十', '王二十一', '刘二十二', '陈二十三', '张二十四', '李二十五', '王二十六', '赵二十七', '田二十八', '孙二十九', '周三十', '吴三十一', '郑三十二', '陈三十三', '刘三十四', '黄三十五', '马三十六', '郭三十七', '冯三十八', '陈三十九', '周四十', '林四十一', '王四十二', '刘四十三', '陈四十四', '张四十五', '李四十六', '王四十七', '赵四十八', '田四十九', '孙五十', '周五十一', '吴五十二', '郑五十三']
+    //先做一等奖
+    //随机数 数组的下标
+    //随机数=Math.random()*数组的长度
+    //Math.floor() 向下取整
+    let random = Math.floor(Math.random() * arr.length)
+    // console.log(random);
+    //获取one元素
+    const one = document.querySelector('#one')
+    one.innerHTML = arr[random]
+    //中奖后从数组中删除，避免重复中奖
+    arr.splice(random, 1)
+    //二等奖
+    const random2 = Math.floor(Math.random() * arr.length);
+    const two = document.querySelector('#two');
+    two.innerHTML = arr[random2];
+    arr.splice(random2, 1);
+    //三等奖
+    const random3 = Math.floor(Math.random() * arr.length);
+    const three = document.querySelector('#three');
+    three.innerHTML = arr[random3];
+    arr.splice(random3, 1);
+
+
+    // //二等奖
+    // random = Math.floor(Math.random() * arr.length)
+    // const two = document.querySelector('#two')
+    // two.innerHTML = arr[random]
+    // arr.splice(random, 1)
+
+    // //三等奖
+    // random = Math.floor(Math.random() * arr.length)
+    // const three = document.querySelector('#three')
+    // three.innerHTML = arr[random]
+    // arr.splice(random, 1)
+
+  </script>
+
+</body>
+
+</html>

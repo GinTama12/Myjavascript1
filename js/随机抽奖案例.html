@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>随机抽奖案例</title>
+</head>
+<style>
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+  }
+
+  .box {
+    width: 300px;
+    height: 120px;
+    border: 1px solid #ccc;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 120px;
+    text-align: center;
+    color: #333;
+  }
+
+  button {
+    width: 140px;
+    height: 50px;
+    margin: 20px 10px 0;
+    font-size: 20px;
+    color: #fff;
+    background-color: #409eff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  button.stop {
+    background-color: #f56c6c;
+  }
+
+  button[disabled] {
+    opacity: .5;
+    cursor: not-allowed;
+  }
+
+  .winner-list {
+    margin-top: 20px;
+    color: red;
+    font-size: 18px;
+  }
+</style>
+
+<body>
+  <div class="container">
+    <!-- 滚动显示名字的盒子 -->
+    <div class="box" id="box">准备开始</div>
+    <div>
+      <button id="start">开始</button>
+      <button id="stop" class="stop">停止</button>
+    </div>
+    <!-- 已经中奖的人员 -->
+    <div class="winner-list" id="winnerList"></div>
+  </div>
+  <script>
+    // Pink老师案例：随机抽奖
+    // 1. 数据：参加抽奖的人员名单
+    var arr = ['马超', '黄忠', '赵云', '关羽', '张飞', '刘备', '曹操', '周瑜', '孙权', '吕布'];
+    // 2. 获取元素
+    var box = document.getElementById('box');
+    var start = document.getElementById('start');
+    var stopBtn = document.getElementById('stop');
+    var winnerList = document.getElementById('winnerList');
+    var timer = null;  // 定时器标识
+    var random = -1;   // 记录随机索引
+    var winners = [];  // 记录所有中奖过的人
+
+    // 3. 点击开始，开启定时器，每隔 100 毫秒随机换一个名字
+    start.addEventListener('click', function () {
+      clearInterval(timer); // 防止重复开启定时器
+      timer = setInterval(function () {
+        random = Math.floor(Math.random() * arr.length);
+        box.innerHTML = arr[random];
+      }, 100);
+    });
+
+    // 4. 点击停止，关闭定时器，弹出中奖人员，并从数组中删除（不再重复中奖）
+    stopBtn.addEventListener('click', function () {
+      clearInterval(timer);
+      if (random === -1) {
+        alert('请先点击开始，再点击停止~');
+        return;
+      }
+      // 如果所有人都抽完了
+      if (arr.length === 0) {
+        box.innerHTML = '抽奖结束';
+        alert('所有人都中过奖啦，抽奖结束！');
+        return;
+      }
+      var winner = arr[random];
+      alert('恭喜 ' + winner + ' 中奖！');
+      // 记录中奖人员
+      winners.push(winner);
+      // 从数组中删除中奖人员， splice(开始的索引, 删除的个数)
+      arr.splice(random, 1);
+      // 页面上显示已中奖名单
+      render();
+      random = -1;
+    });
+
+    // 5. 渲染已中奖人员名单
+    function render() {
+      winnerList.innerHTML = '已中奖：' + winners.join('、');
+    }
+  </script>
+
+</body>
+
+</html>

@@ -69,6 +69,14 @@ function greet() {
     }else{
         document.getElementById("greet").textContent = "晚上好";
     }}
+//抽奖功能
+function drawLottery() {
+    const prizes = ["一等奖", "二等奖", "三等奖", "谢谢参与", "再来一次"];
+    // 随机生成一个下标
+    const index = Math.floor(Math.random() * prizes.length);
+    const result = `抽奖结果：${prizes[index]}！`;
+    document.getElementById("lotteryResult").textContent = result;
+}
 //根据当前时间获取不同的问候语
 function greet(){
     const currentHour = new Date().getHours();
