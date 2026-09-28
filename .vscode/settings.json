@@ -1,5 +1,5 @@
 {
-  "workbench.colorTheme": "CodeBuddy Light",
+  "workbench.colorTheme": "Default Light Modern",
   "emmet.triggerExpansionOnTab": true,
   "editor.quickSuggestions": {
     "other": true,
@@ -21,5 +21,5 @@
     "*.css": "css",
     "*.js": "javascript"
   },
-  "liveServer.settings.port": 5501
+  "liveServer.settings.port": 5502
 }
