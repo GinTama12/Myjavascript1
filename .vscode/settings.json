@@ -1,5 +1,5 @@
 {
-  "workbench.colorTheme": "Default High Contrast Light",
+  "workbench.colorTheme": "Light 2026",
   "emmet.triggerExpansionOnTab": true,
   "editor.quickSuggestions": {
     "other": true,
@@ -21,5 +21,5 @@
     "*.css": "css",
     "*.js": "javascript"
   },
-  "liveServer.settings.port": 5502
+  "liveServer.settings.port": 5503
 }

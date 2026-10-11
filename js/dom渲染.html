@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .demo {
+      width: 840px;
+      margin: 0 auto;
+      text-align: center;
+      margin-top: 100px;
+      font-size: 30px;
+      color: red;
+      line-height: 40px;
+      font-weight: bold;
+      border: 1px solid red;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="demo">
+    <h1>hello world</h1>
+    <p>这是一个段落</p>
+    <p>这是第二个段落</p>
+    <p>这是第三个段落</p>
+  </div>
+  <script>
+    //获取元素
+    let h1 = document.querySelector('h1');
+    let p = document.querySelector('p');
+    //渲染
+    h1.innerText = '好好学习';
+    p.innerText = '我爱你';
+  </script>
+
+</body>
+
+</html>
