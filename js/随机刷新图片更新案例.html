@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <img src="../img/风景图片/wallpaper_1.jpg" alt="">
+  <script>
+    //随机函数
+    function getRandomInt(n, m) {
+      return Math.floor(Math.random() * (m - n + 1) + n);
+    }
+    //获取图片对象
+    const img = document.querySelector('img');
+    //随机得到一个图片索引，总共10张
+    const random = getRandomInt(1, 10);
+    //更换路径
+    img.src = `../img/风景图片/wallpaper_${random}.jpg`;
+  </script>
+
+</body>
+
+</html>

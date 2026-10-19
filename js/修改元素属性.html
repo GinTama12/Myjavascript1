@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <img src="../img/随机图片/landscape_1.jpg" alt="">
+  <script>
+    //取到n-m的随机整数方法
+    function getRandomInt(n, m) {
+      return Math.floor(Math.random() * (m - n + 1) + n);
+    }
+    //获取图片对象
+    const img = document.querySelector('img');
+    //随机得到一个图片的索引
+    const random = getRandomInt(1, 10);
+    //更换路径
+    img.src = `../img/随机图片/landscape_${random}.jpg`;
+
+  </script>
+
+</body>
+
+</html>
