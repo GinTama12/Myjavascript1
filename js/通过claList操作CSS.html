@@ -5,14 +5,43 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link rel="stylesheet" href="../css/classList.css">
+  <style>
+    .box {
+      width: 200px;
+      height: 200px;
+      background-color: pink;
+      margin: 0 auto;
+    }
+
+    .box:hover {
+      background-color: red;
+    }
+
+    .box2 {
+      width: 200px;
+      height: 200px;
+      background-color: red;
+      margin: 0 auto;
+    }
+
+    .box2:hover {
+      background-color: pink;
+    }
+  </style>
 </head>
 
+
 <body>
+  <h1>通过classList操作CSS</h1>
   <div class="box">我是文本测试</div>
-  <button id="bbutton">点击我</button>
-  <button id="bbutton2">点击我2</button>
-  <script src="../js/classList.js"></script>
+  <script>
+    const box = document.querySelector('.box')//获取元素
+    //切换
+    box.classList.toggle('box2'); //切换类名
+    console.log(box);
+    console.dir(box);
+  </script>
+
 </body>
 
 </html>
